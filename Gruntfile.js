@@ -4,6 +4,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     // Concatenate all vendor scripts to vendor.js and app scripts to app.js 
+      
     concat: {
       options: {},
       vendor: {
@@ -76,6 +77,8 @@ module.exports = function(grunt) {
       }
     }
   });
+    
+    
 
   // Load the plugins that provide the grunt tasks
   grunt.loadNpmTasks('grunt-contrib-concat');

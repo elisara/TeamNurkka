@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="src/styles/main.css" rel="stylesheet">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>TROLOLOTL</title>
+    <!-- Bootstrap -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <link href="bower_components/jquery/nailthumb/jquery.nailthumb.1.1.min.css" rel="stylesheet" type="text/css">
+
+
+
+</head>
+
+<body ng-controller="UploadController" id="kaikki">
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Feed</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">Home</a></li>
+                <li><a href="#">Page 1</a></li>
+                <li><a href="#">Page 2</a></li>
+                <li><a href="#">Page 3</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="upload"></div>
+    <form id="fileForm">
+
+        file
+        <input type="file" name="file" onchange="angular.element(this).scope().setMediaFile(this)"> Title
+        <input name="title" type="text">
+        <br> Description
+        <input name="description" type="text">
+        <br>
+        <button ng-click="sendImage()">Upload</button>
+
+    </form>
+    </div>
+    <div class="container" id="kuvat" ng-controller="AjaxCtrl">
+        <div class="col-xs-12">
+            <div class="thumbnail" ng-repeat="file in files">
+                <a href="http://util.mw.metropolia.fi/uploads/{{ file.path }}" >
+                    <div class="img" style="background-image: url(http://util.mw.metropolia.fi/uploads/{{ file.path }});">
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+
+
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <!-- Include angular files & plugins -->
+        <script src="bower_components/angular/angular.js"></script>
+
+
+        <!-- Include My App's JS file(s)-->
+        <script src="src/app.js"></script>
+        <script src="src/ajaxService.js"></script>
+        <script src="src/ajaxController.js"></script>
+
+        <!-- build:js(.) scripts/plugins.js 
+    
+    endbuild -->
+
+
+</body>
+
+</html>

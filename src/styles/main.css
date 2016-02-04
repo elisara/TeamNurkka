@@ -1,3 +1,6 @@
+body{
+    padding-top: 52px;
+}
 #kuvat {
     background-color: black;
 }
@@ -50,4 +53,57 @@ img {
         border-radius: 0px !important;
         margin: 1% !important;
     }
+}
+
+.popup-position {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0, 7);
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+
+#popup-wrapper {
+    width: 500px;
+    margin: 70px auto;
+    text-align: left;
+}
+
+#popup-container {
+    background-color: #f8f8f8;
+    padding: 20 px;
+    border-radius: 4px;
+}
+#closeX{
+    text-align: right !important;
+    margin-right: 10px !important;
+}
+
+#uploadForm {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    padding-bottom: 15px !important;
+}
+
+.navbar-toggle {
+    border-color: azure
+}
+
+.navbar-toggle .icon-bar {
+    background-color: white;
+}
+.nav-up {
+    top: -52px;
+}
+
+header {
+   
+    position: fixed;
+    top: 0;
+    transition: top 0.2s ease-in-out;
+    width: 100%;
+    z-index: 998;
 }

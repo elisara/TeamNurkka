@@ -26,6 +26,4 @@ Hihi
 <br>
 11.Ala-menu-navi
 <br>
-12.Videon ja äänen 
-<br>
-13.Logo
+12.Logo

@@ -3,7 +3,6 @@
 Hihi
 
 ## TODO
-<br>
 1.Kuvasivu/divi
 <br>
 2.Kommentointi

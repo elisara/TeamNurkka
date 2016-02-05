@@ -20,7 +20,7 @@ Hihi
 <br>
 8.Floating navi ja buttonit
 <br>
-9.Hamppari-menu 70%-ruudusta about ja sen katoaminen ulos klikatessa
+9.Hamppari-menu 70% ruudusta about ja sen katoaminen ulos klikatessa
 <br>
 10.Sivulle vippasu/klikkaus seuraavaan kuvaan
 <br>

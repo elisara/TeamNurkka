@@ -85,6 +85,8 @@
             </div>
         </div>
     </div>
+
+
     <div id="popup-register" class="popup-position">
         <div id="popup-wrapper">
             <div id="popup-container">
@@ -113,15 +115,24 @@
 
 
 
-
-
-
     <div class="container" id="kuvat" ng-controller="AjaxCtrl">
         <div class="col-xs-12">
             <br>
             <br>
+            <div ng-controller="userFilesController">
+                <show-files></show-files>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!--<div class="container" id="kuvat" ng-controller="AjaxCtrl">
+        <div class="col-xs-12">
+            <br>
+            <br>
             <div class="thumbnail" ng-repeat="file in files">
-                <a href="media.html" ng-click="sendId(file)">
+                <a href="http://util.mw.metropolia.fi/uploads/{{ file.path }}" ng-click="sendId(file)">
                     <div class="img" style="background-image: url(http://util.mw.metropolia.fi/uploads/{{ file.path }});">
                         
                         <p>{{ file.title }}</p><br>
@@ -131,7 +142,7 @@
                 </a>
             </div>
         </div>
-    </div>
+    </div>-->
 
 
 
@@ -140,7 +151,7 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-    
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
@@ -158,14 +169,18 @@
     <script src="scripts/directives/registerForm.js"></script>
     <script src="scripts/directives/uploadForm.js"></script>
     <script src="scripts/directives/loginForm.js"></script>
+    <script src="scripts/directives/fileFrom.js"></script>
+    <script src="scripts/directives/showFiles.js"></script>
 
     <!-- controllers -->
     <script src="scripts/controllers/registerController.js"></script>
     <script src="scripts/controllers/uploadController.js"></script>
     <script src="scripts/controllers/loginController.js"></script>
+    <script src="scripts/controllers/userFilesController.js"></script>
 
     <!-- servises -->
     <script src="scripts/services/ajaxFactory.js"></script>
+    <script src="scripts/services/mediaService.js"></script>
 
 
     <script type="text/javascript">

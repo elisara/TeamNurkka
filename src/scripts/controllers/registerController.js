@@ -1,6 +1,6 @@
 angular.module('myApp')
-    .controller('registerController', function ($scope, ajaxFactory) {
-        
+    .controller('registerController', function ($scope, $window, ajaxFactory, MediaService) {
+
 
         $scope.register = function () {
             var data = {
@@ -8,11 +8,14 @@ angular.module('myApp')
                 password: $scope.pwd,
                 email: $scope.email
             };
-            
+
             var request = ajaxFactory.register(data);
-            
+
             request.then(function (response) {
                 console.log(response.data);
+                MediaService.setVariable('userData', response.data);
+                $scope.logged = true;
+                //$window.location.reload();
             }, function (error) {
                 console.log(error.data);
             });

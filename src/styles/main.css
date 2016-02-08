@@ -1,6 +1,7 @@
-body{
+body {
     padding-top: 52px;
 }
+
 #kuvat {
     background-color: black;
 }
@@ -77,7 +78,8 @@ img {
     padding: 20 px;
     border-radius: 4px;
 }
-#closeX{
+
+#closeX {
     text-align: right !important;
     margin-right: 10px !important;
 }
@@ -86,6 +88,8 @@ img {
     padding-left: 15px !important;
     padding-right: 15px !important;
     padding-bottom: 15px !important;
+   
+    
 }
 
 .navbar-toggle {
@@ -95,12 +99,12 @@ img {
 .navbar-toggle .icon-bar {
     background-color: white;
 }
+
 .nav-up {
     top: -52px;
 }
 
 header {
-   
     position: fixed;
     top: 0;
     transition: top 0.2s ease-in-out;

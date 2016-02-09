@@ -15,14 +15,14 @@ Hihi
 <br>
 6.Login-toiminnot 
 <br>
-7.Omat kuvat-sivu
+7.Floating navi ja buttonit
 <br>
-8.Floating navi ja buttonit
+8.Hamppari-menu ja sen katoaminen ulos klikatessa
 <br>
-9.Hamppari-menu 70% ruudusta about ja sen katoaminen ulos klikatessa
+9.Sivulle vippasu/klikkaus seuraavaan kuvaan
 <br>
-10.Sivulle vippasu/klikkaus seuraavaan kuvaan
+10.Ala-menu-navi keskelle, iconit AUDIO, KUVA, VIDEO
 <br>
-11.Ala-menu-navi
+11.Logo
 <br>
-12.Logo
+

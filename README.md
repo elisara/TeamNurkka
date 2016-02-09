@@ -15,14 +15,12 @@ Hihi
 <br>
 6.Login-toiminnot 
 <br>
-7.Floating navi ja buttonit
+7.Hamppari-menu ja sen katoaminen ulos klikatessa
 <br>
-8.Hamppari-menu ja sen katoaminen ulos klikatessa
+8.Sivulle vippasu/klikkaus seuraavaan kuvaan
 <br>
-9.Sivulle vippasu/klikkaus seuraavaan kuvaan
+9.Ala-menu-navi keskelle, iconit AUDIO, KUVA, VIDEO + transparency
 <br>
-10.Ala-menu-navi keskelle, iconit AUDIO, KUVA, VIDEO
-<br>
-11.Logo
+10.Logo
 <br>
 

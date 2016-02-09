@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-xs-12" ng-show="feed">
+        <div class="thumbnail" ng-repeat="file in files">
+
+            <a href="#" ng-click="sendId(file)">
+
+                <div ng-if="file.mimeType.substr(0,5) == 'image'">
+                    <div class="img" style="background-image:url({{trustSrc(file.thumbNails.medium)}});">
+                    </div>
+
+                </div>
+                <div ng-if="file.mimeType.substr(0,5) == 'audio'">
+                    <audio controls class="img">
+                        <source ng-src="{{trustSrc(file.path)}}" type="audio/mp4">
+                    </audio>
+                </div>
+                <div ng-if="file.mimeType.substr(0,5) == 'video'">
+                    <video controls class="img">
+                        <source ng-src="{{trustSrc(file.path)}}" type="video/mp4">
+                    </video>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</div>

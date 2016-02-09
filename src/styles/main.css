@@ -291,3 +291,20 @@ body.nav-expanded {
   margin: 0.1em 0.8em -0.1em 0;
   opacity: 1;
 }
+
+#alanavi {
+    /*display: block!important;*/
+    background: rgba(0, 0, 0, 0.0);
+    border: 0;
+    color: white;
+}
+
+
+
+#alanavirow{
+}
+
+#naviul{
+    list-style: none;
+    
+}

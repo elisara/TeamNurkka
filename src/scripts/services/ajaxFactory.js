@@ -29,6 +29,10 @@ angular.module('myApp')
             });
 
         };
+    
+        ajaxFunctions.fileByUser = function (args) {
+            return $http.get(urlBase + 'files/user/' + args);
+        };
 
         return ajaxFunctions;
     });

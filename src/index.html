@@ -23,50 +23,38 @@
 <body id="kaikki">
 
     <header class="nav-down">
-        <nav class="navbar navbar-default ">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.html">KuvaNurkka</a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-
-                        <li><a data-toggle="collapse" data-target=".navbar-collapse" href="javascript:void(0)" onclick="toggle_visibility('popup-upload');">Upload</a></li>
-                        <li><a data-toggle="collapse" data-target=".navbar-collapse" href="javascript:void(0)" onclick="toggle_visibility('popup-register');">Register</a></li>
-                        <li><a data-toggle="collapse" data-target=".navbar-collapse" href="javascript:void(0)" onclick="toggle_visibility('popup-login');">Login</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <form class="navbar-form navbar-left" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                        </div>
-                        <button type="submit" class="btn btn-default">Submit</button>
-                    </form>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-        </nav>
+        <nav>
+        <ul class="list-unstyled main-menu">
+          
+          <!--Include your navigation here-->
+          <li class="text-right"><a href="#" id="nav-close">X</a></li>
+          <li><a data-toggle="collapse" data-target=".navbar-collapse" href="javascript:void(0)" onclick="toggle_visibility('popup-upload');">Upload <span class="icon"></span></a></li>
+          <li><a data-toggle="collapse" data-target=".navbar-collapse" href="javascript:void(0)" onclick="toggle_visibility('popup-register');">Register <span class="icon"></span></a></li>
+          <li><a data-toggle="collapse" data-target=".navbar-collapse" href="javascript:void(0)" onclick="toggle_visibility('popup-login');">Login <span class="icon"></span></a></li>
+          <li><a href="#">Dropdown</a>
+            <ul class="list-unstyled">
+                <li class="sub-nav"><a href="#">Sub Menu One <span class="icon"></span></a></li>
+                <li class="sub-nav"><a href="#">Sub Menu Two <span class="icon"></span></a></li>
+                <li class="sub-nav"><a href="#">Sub Menu Three <span class="icon"></span></a></li>
+                <li class="sub-nav"><a href="#">Sub Menu Four <span class="icon"></span></a></li>
+                <li class="sub-nav"><a href="#">Sub Menu Five <span class="icon"></span></a></li>
+            </ul>
+          </li>
+          <li><a href="#">Menu Four <span class="icon"></span></a></li>
+          <li><a href="#">Menu Five <span class="icon"></span></a></li>
+        </ul>
+      </nav>
+          
+    <div class="navbar navbar-inverse navbar-fixed-top">      
+        
+        <!--Include your brand here-->
+        <a class="navbar-brand" href="index.html">KuvaNurkka</a>
+        <div class="navbar-header pull-right">
+          <a id="nav-expander" class="nav-expander fixed">
+            MENU<i class="fa fa-bars fa-lg white"></i>
+          </a>
+        </div>
+    </div>
     </header>
 
 
@@ -111,36 +99,78 @@
     </div>
 
 
-
-
-
-
-
     <div class="container" id="kuvat" ng-controller="AjaxCtrl">
+        <div class="theKuva" ng-show="image">
+            <img src="http://util.mw.metropolia.fi/uploads/{{ theFile.path }}" alt="http://util.mw.metropolia.fi/uploads/{{ theFile.title }}">
+            <div class="imageDetails">
+                <br>
+                <p>Title: {{ theFile.title }}</p>
+                <p>File ID: {{ theFile.fileId }}</p>
+            </div>
+        </div>
         <div class="col-xs-12">
             <br>
             <br>
-            <div class="thumbnail" ng-repeat="file in files">
-                <a href="media.html" ng-click="sendId(file)">
-                    <div class="img" style="background-image: url(http://util.mw.metropolia.fi/uploads/{{ file.path }});">
-                        
-                        <p>{{ file.title }}</p><br>
-                        <p>{{ file.fileId }}</p><br>
-                        
-                    </div>
-                </a>
+            <div ng-controller="userFilesController">
+                <show-files></show-files>
             </div>
+
         </div>
     </div>
 
 
 
 
+    <!--<div class="container" id="kuvat" ng-controller="AjaxCtrl">
+        <div class="theKuva" ng-show="image">
+            <img src="http://util.mw.metropolia.fi/uploads/{{ theFile.path }}" alt="http://util.mw.metropolia.fi/uploads/{{ theFile.title }}">
+            <div class="imageDetails">
+                <br>
+                <p>Title: {{ theFile.title }}</p>
+                <p>File ID: {{ theFile.fileId }}</p>
+            </div>
+        </div>
+
+        <div class="col-xs-12" ng-show="feed">
+            <br>
+            <br>
+            <div class="thumbnail" ng-repeat="file in files">
+
+                <a href="#" ng-click="sendId(file)">
+                    <div class="img" style="background-image: url(http://util.mw.metropolia.fi/uploads/{{ file.path }});">
+
+
+
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div> -->
+
+
+
+    <footer>
+        <div class="navbar navbar-inverse nav-links navbar-fixed-bottom">
+            <div class="container">
+                <ul class="nav navbar-nav" id="footercontainer">
+                    <li>
+                        <a href="#"><img src="images/User-48.png"></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" onclick="toggle_visibility('popup-upload');"><img src="images/Plus-50.png"></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="images/Search-64.png"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-    
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
@@ -151,23 +181,68 @@
     <script src="app.js"></script>
     <script src="ajaxService.js"></script>
     <script src="ajaxController.js"></script>
-    <script src="imageController.js"></script>
+    6
     <script src="scripts/scrollNav.js"></script>
 
     <!-- directives -->
     <script src="scripts/directives/registerForm.js"></script>
     <script src="scripts/directives/uploadForm.js"></script>
     <script src="scripts/directives/loginForm.js"></script>
+    <script src="scripts/directives/fileFrom.js"></script>
+    <script src="scripts/directives/showFiles.js"></script>
 
     <!-- controllers -->
     <script src="scripts/controllers/registerController.js"></script>
     <script src="scripts/controllers/uploadController.js"></script>
     <script src="scripts/controllers/loginController.js"></script>
+    <script src="scripts/controllers/userFilesController.js"></script>
 
     <!-- servises -->
     <script src="scripts/services/ajaxFactory.js"></script>
+    <script src="scripts/services/mediaService.js"></script>
 
 
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="js/jquery.navgoco.js"></script>
+    <script src="js/main.js"></script>
+    
+    <script>
+    $(document).ready(function(){                        
+       
+       //Navigation Menu Slider
+        $('#nav-expander').on('click',function(e){
+          e.preventDefault();
+          $('body').toggleClass('nav-expanded');
+        });
+        $('#nav-close').on('click',function(e){
+          e.preventDefault();
+          $('body').removeClass('nav-expanded');
+        });
+        
+        
+        // Initialize navgoco with default options
+        $(".main-menu").navgoco({
+            caret: '<span class="caret"></span>',
+            accordion: false,
+            openClass: 'open',
+            save: true,
+            cookie: {
+                name: 'navgoco',
+                expires: false,
+                path: '/'
+            },
+            slide: {
+                duration: 300,
+                easing: 'swing'
+            }
+        });
+  
+          
+      });
+      </script>
+    
     <script type="text/javascript">
         <!--
         function toggle_visibility(id) {

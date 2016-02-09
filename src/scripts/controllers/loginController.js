@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .controller('loginController', function ($scope, ajaxFactory) {
+    .controller('loginController', function ($scope, $window, ajaxFactory, MediaService) {
         
 
         $scope.login = function () {
@@ -13,6 +13,9 @@ angular.module('myApp')
             
             request.then(function (response) {
                 console.log(response.data);
+                MediaService.setVariable('userData', response.data);
+                $scope.logged = true;
+                 //$window.location.reload();
             }, function (error) {
                 console.log(error.data);
             });

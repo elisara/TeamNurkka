@@ -4,7 +4,7 @@ git add .
 <br>
 git commit -m "ksdhfisudhpif"
 <br>
-git push -u origin/keni/ellu/ master   <--tai se branch minne koitetaan
+git push -u origin/keni/ellu master   <--tai se branch minne koitetaan
 <br>
 <br>
 

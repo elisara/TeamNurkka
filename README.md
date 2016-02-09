@@ -1,6 +1,18 @@
 # TeamNurkka
 
-Hihi
+git add .
+<br>
+git commit -m "ksdhfisudhpif"
+<br>
+git push -u origin/keni/ellu/ master   <--tai se branch minne koitetaan
+<br>
+<br>
+
+vaihdetaan esim master testbranchiin:
+<br>
+git checkout testbranch
+<br>
+
 
 ## TODO
 1.Kuvasivu/divi

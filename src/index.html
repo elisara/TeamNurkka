@@ -6,55 +6,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
     <link href="styles/main.css" rel="stylesheet">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>TROLOLOTL</title>
+    <title>KuvaNurkka</title>
     <!-- Bootstrap -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
-    <link href="../bower_components/jquery/nailthumb/jquery.nailthumb.1.1.min.css" rel="stylesheet" type="text/css">
-
-
-
 </head>
 
 <body id="kaikki">
-
     <header class="nav-down">
         <nav>
-        <ul class="list-unstyled main-menu">
-          
-          <!--Include your navigation here-->
-          <li class="text-right"><a href="#" id="nav-close">X</a></li>
-          <li><a data-toggle="collapse" data-target=".navbar-collapse" href="javascript:void(0)" onclick="toggle_visibility('popup-upload');">Upload <span class="icon"></span></a></li>
-          <li><a data-toggle="collapse" data-target=".navbar-collapse" href="javascript:void(0)" onclick="toggle_visibility('popup-register');">Register <span class="icon"></span></a></li>
-          <li><a data-toggle="collapse" data-target=".navbar-collapse" href="javascript:void(0)" onclick="toggle_visibility('popup-login');">Login <span class="icon"></span></a></li>
-          <li><a href="#">Dropdown</a>
-            <ul class="list-unstyled">
-                <li class="sub-nav"><a href="#">Sub Menu One <span class="icon"></span></a></li>
-                <li class="sub-nav"><a href="#">Sub Menu Two <span class="icon"></span></a></li>
-                <li class="sub-nav"><a href="#">Sub Menu Three <span class="icon"></span></a></li>
-                <li class="sub-nav"><a href="#">Sub Menu Four <span class="icon"></span></a></li>
-                <li class="sub-nav"><a href="#">Sub Menu Five <span class="icon"></span></a></li>
+            <ul class="list-unstyled main-menu">
+
+                <!--Include your navigation here-->
+                <li class="text-right"><a href="#" id="nav-close">X</a></li>
+                <li><a href="javascript:void(0)" id="nav-close" onclick="toggle_visibility('popup-upload');">Upload </a></li>
+                <li><a href="javascript:void(0)" id="nav-close" onclick="toggle_visibility('popup-register');">Register </a></li>
+                <li><a href="javascript:void(0)" id="nav-close" onclick="toggle_visibility('popup-login');">Login </a></li>
+                <li><a href="#">Dropdown</a>
+                    <ul class="list-unstyled">
+                        <li class="sub-nav"><a href="#">Sub Menu One <span class="icon"></span></a></li>
+                        <li class="sub-nav"><a href="#">Sub Menu Two <span class="icon"></span></a></li>
+                        <li class="sub-nav"><a href="#">Sub Menu Three <span class="icon"></span></a></li>
+                        <li class="sub-nav"><a href="#">Sub Menu Four <span class="icon"></span></a></li>
+                        <li class="sub-nav"><a href="#">Sub Menu Five <span class="icon"></span></a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Menu Four <span class="icon"></span></a></li>
+                <li><a href="#">Menu Five <span class="icon"></span></a></li>
             </ul>
-          </li>
-          <li><a href="#">Menu Four <span class="icon"></span></a></li>
-          <li><a href="#">Menu Five <span class="icon"></span></a></li>
-        </ul>
-      </nav>
-          
-    <div class="navbar navbar-inverse navbar-fixed-top">      
-        
-        <!--Include your brand here-->
-        <a class="navbar-brand" href="index.html">KuvaNurkka</a>
-        <div class="navbar-header pull-right">
-          <a id="nav-expander" class="nav-expander fixed">
-            <img src="images/Menu-48.png"><i class="fa fa-bars fa-lg white"></i>
-          </a>
+        </nav>
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+
+            <!--Include your brand here-->
+            <a class="navbar-brand" href="index.html">KuvaNurkka</a>
+            <div class="navbar-header pull-right">
+                <a id="nav-expander" class="nav-expander fixed">
+                    <img src="images/Menu-48.png"><i class="fa fa-bars fa-lg white"></i>
+                </a>
+            </div>
         </div>
-    </div>
     </header>
 
 
@@ -121,62 +113,32 @@
 
 
 
-    <!--<div class="container" id="kuvat" ng-controller="AjaxCtrl">
-        <div class="theKuva" ng-show="image">
-            <img src="http://util.mw.metropolia.fi/uploads/{{ theFile.path }}" alt="http://util.mw.metropolia.fi/uploads/{{ theFile.title }}">
-            <div class="imageDetails">
-                <br>
-                <p>Title: {{ theFile.title }}</p>
-                <p>File ID: {{ theFile.fileId }}</p>
-            </div>
-        </div>
-
-        <div class="col-xs-12" ng-show="feed">
-            <br>
-            <br>
-            <div class="thumbnail" ng-repeat="file in files">
-
-                <a href="#" ng-click="sendId(file)">
-                    <div class="img" style="background-image: url(http://util.mw.metropolia.fi/uploads/{{ file.path }});">
 
 
-
+    <div class="navbar navbar-fixed-bottom" id="alanavi">
+        <div class="container" id="alanavicontainer">
+            <div class="row" id="alanavirow">
+                <ul id="naviul">
+                    <div class="col-xs-4" id="navidivi">
+                        <li>
+                            <a href="#"><img src="images/audio.png"></a>
+                        </li>
                     </div>
-                </a>
+                    <div class="col-xs-4" id="navidivi">
+                        <li>
+                            <a href="#"><img src="images/photos.png"></a>
+                        </li>
+                    </div>
+                    <div class="col-xs-4" id="navidivi">
+                        <li>
+                            <a href="#"><img src="images/film.png"></a>
+                        </li>
+                    </div>
+                </ul>
+
             </div>
         </div>
-    </div> -->
-
-
-
-    <footer>
-        <div class="navbar navbar-default nav-links navbar-fixed-bottom" id="alanavi">
-            <div class="container" id="alanavicontainer">
-                <div class="row" id="alanavirow">
-
-                    <ul id="naviul">
-                        <div class="col-xs-4" >
-                            <li>
-                                <a href="#"><img src="images/User-48.png"></a>
-                            </li>
-                        </div>
-                        <div class="col-xs-4">
-                            <li>
-                                <a href="javascript:void(0)" onclick="toggle_visibility('popup-upload');"><img src="images/Plus-50.png"></a>
-                            </li>
-                        </div>
-                        <div class="col-xs-4">
-                            <li>
-                                <a href="#"><img src="images/Search-64.png"></a>
-                            </li>
-                        </div>
-                    </ul>
-
-                </div>
-            </div>
-        </div>
-    </footer>
-
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -191,7 +153,6 @@
     <script src="app.js"></script>
     <script src="ajaxService.js"></script>
     <script src="ajaxController.js"></script>
-    6
     <script src="scripts/scrollNav.js"></script>
 
     <!-- directives -->
@@ -213,46 +174,48 @@
 
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')</script>
+    <script>
+        window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')
+    </script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="js/jquery.navgoco.js"></script>
     <script src="js/main.js"></script>
-    
+
     <script>
-    $(document).ready(function(){                        
-       
-       //Navigation Menu Slider
-        $('#nav-expander').on('click',function(e){
-          e.preventDefault();
-          $('body').toggleClass('nav-expanded');
+        $(document).ready(function () {
+
+            //Navigation Menu Slider
+            $('#nav-expander').on('click', function (e) {
+                e.preventDefault();
+                $('body').toggleClass('nav-expanded');
+            });
+            $('#nav-close').on('click', function (e) {
+                e.preventDefault();
+                $('body').removeClass('nav-expanded');
+            });
+
+
+            // Initialize navgoco with default options
+            $(".main-menu").navgoco({
+                caret: '<span class="caret"></span>',
+                accordion: false,
+                openClass: 'open',
+                save: true,
+                cookie: {
+                    name: 'navgoco',
+                    expires: false,
+                    path: '/'
+                },
+                slide: {
+                    duration: 300,
+                    easing: 'swing'
+                }
+            });
+
+
         });
-        $('#nav-close').on('click',function(e){
-          e.preventDefault();
-          $('body').removeClass('nav-expanded');
-        });
-        
-        
-        // Initialize navgoco with default options
-        $(".main-menu").navgoco({
-            caret: '<span class="caret"></span>',
-            accordion: false,
-            openClass: 'open',
-            save: true,
-            cookie: {
-                name: 'navgoco',
-                expires: false,
-                path: '/'
-            },
-            slide: {
-                duration: 300,
-                easing: 'swing'
-            }
-        });
-  
-          
-      });
-      </script>
-    
+    </script>
+
     <script type="text/javascript">
         <!--
         function toggle_visibility(id) {

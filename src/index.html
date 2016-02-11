@@ -19,10 +19,10 @@
             <ul class="list-unstyled main-menu">
 
                 <!--Include your navigation here-->
-                <li class="text-right"><a href="#" id="nav-close">X</a></li>
-                <li><a href="javascript:void(0)" id="nav-close" onclick="toggle_visibility('popup-upload');">Upload </a></li>
-                <li><a href="javascript:void(0)" id="nav-close" onclick="toggle_visibility('popup-register');">Register </a></li>
-                <li><a href="javascript:void(0)" id="nav-close" onclick="toggle_visibility('popup-login');">Login </a></li>
+                <li class="nav-close" style="text-align: right;"><a href="#">X</a></li>
+                <li><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-upload');">Upload </a></li>
+                <li><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-register');">Register </a></li>
+                <li><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-login');">Login </a></li>
                 <li><a href="#">Dropdown</a>
                     <ul class="list-unstyled">
                         <li class="sub-nav"><a href="#">Sub Menu One <span class="icon"></span></a></li>
@@ -57,7 +57,7 @@
         <div id="popup-wrapper">
             <div id="popup-container">
                 <div class="upload">
-                    <div id="closeX"><a href="javascript:void(0)" onclick="toggle_visibility('popup-upload');">X </a></div>
+                    <div class="closeX"><a href="javascript:void(0)" onclick="toggle_visibility('popup-upload');">X </a></div>
                     <div ng-controller="uploadController">
                         <upload-form></upload-form>
                     </div>
@@ -69,7 +69,7 @@
         <div id="popup-wrapper">
             <div id="popup-container">
                 <div class="register">
-                    <div id="closeX"><a href="javascript:void(0)" onclick="toggle_visibility('popup-register');">X </a></div>
+                    <div class="closeX"><a href="javascript:void(0)" onclick="toggle_visibility('popup-register');">X </a></div>
                     <div ng-controller="registerController">
                         <register-form></register-form>
                     </div>
@@ -81,7 +81,7 @@
         <div id="popup-wrapper">
             <div id="popup-container">
                 <div class="login">
-                    <div id="closeX"><a href="javascript:void(0)" onclick="toggle_visibility('popup-login');">X </a></div>
+                    <div class="closeX"><a href="javascript:void(0)" onclick="toggle_visibility('popup-login');">X </a></div>
                     <div ng-controller="loginController">
                         <login-form></login-form>
                     </div>
@@ -93,7 +93,7 @@
 
     <div class="container" id="kuvat" ng-controller="AjaxCtrl">
         <div class="theKuva" ng-show="image">
-            <img src="http://util.mw.metropolia.fi/uploads/{{ theFile.path }}" alt="http://util.mw.metropolia.fi/uploads/{{ theFile.title }}">
+            <img src="http://util.mw.metropolia.fi/uploads/{{ theFile.path }}" alt="http://util.mw.metropolia.fi/uploads/{{ theFile.title }}" ng-swipe-left="nextImg()" ng-swipe-right="prevImg()">
             <div class="imageDetails">
                 <br>
                 <p>Title: {{ theFile.title }}</p>
@@ -148,6 +148,7 @@
 
     <!-- Include angular files & plugins -->
     <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-touch/angular-touch.js"></script>
 
     <!-- Include My App's JS file(s)-->
     <script src="app.js"></script>
@@ -161,6 +162,7 @@
     <script src="scripts/directives/loginForm.js"></script>
     <script src="scripts/directives/fileFrom.js"></script>
     <script src="scripts/directives/showFiles.js"></script>
+    <script src="scripts/directives/fileView.js"></script>
 
     <!-- controllers -->
     <script src="scripts/controllers/registerController.js"></script>
@@ -189,7 +191,7 @@
                 e.preventDefault();
                 $('body').toggleClass('nav-expanded');
             });
-            $('#nav-close').on('click', function (e) {
+            $('.nav-close').on('click', function (e) {
                 e.preventDefault();
                 $('body').removeClass('nav-expanded');
             });

@@ -8,8 +8,10 @@ angular.module('myApp')
         });
 
 
-        $scope.sendId = function (file) {
-
+        $scope.sendId = function (file, index) {
+            $scope.numero = index;
+            console.log($scope.numero);
+            $scope.changefile = $scope.files[index];
             $scope.theFile = file;
             console.log($scope.theFile);
             $scope.image = true;
@@ -17,4 +19,24 @@ angular.module('myApp')
             return file;
         };
         
+    $scope.nextImg = function () {
+        $scope.numero ++;
+        console.log("Next: " + $scope.numero);
+        console.log($scope.theFile);
+        
+        $scope.changefile = $scope.files[$scope.numero];
+        $scope.theFile = $scope.changefile;
+        console.log($scope.theFile);
+    }
+    
+    $scope.prevImg = function () {
+        $scope.numero --;
+        console.log("previous: " + $scope.numero);
+        console.log($scope.theFile);
+        
+        $scope.changefile = $scope.files[$scope.numero];
+        $scope.theFile = $scope.changefile;
+        console.log($scope.theFile);
+    }
+    
     });

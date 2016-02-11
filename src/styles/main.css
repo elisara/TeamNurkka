@@ -76,13 +76,18 @@ body {
     border-radius: 4px;
 }
 
-#closeX {
+.closeX {
     text-align: right !important;
     margin-right: 10px !important;
-    
 }
-#closeX.a {
+
+.closeX a {
     color: #6F7D8C !important;
+    text-decoration: none;
+}
+
+.closeX a:hover {
+    color: #FFFFFF !important;
     text-decoration: none;
 }
 
@@ -335,7 +340,10 @@ body.nav-expanded {
 
 /*Input forms*/
 
-#tekstiIn {
-    style="background:black; color:white;
-
+input[type=text] {
+    background: #333;
+    border-color: #0d0d0d;
+    color: white;
+    
+ 
 }

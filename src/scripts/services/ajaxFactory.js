@@ -1,7 +1,9 @@
 angular.module('myApp')
     .factory('ajaxFactory', function ($http, $httpParamSerializer) {
         var urlBase = 'http://util.mw.metropolia.fi/ImageRekt/api/v2/';
+
         var ajaxFunctions = {};
+        ajaxFunctions.urlBaseImage = 'http://util.mw.metropolia.fi/uploads/';
 
         ajaxFunctions.uploadFile = function (args) {
             return $http.post(urlBase + 'upload', args, {
@@ -29,10 +31,46 @@ angular.module('myApp')
             });
 
         };
-    
+        ajaxFunctions.comment = function (data, id) {
+            return $http.post(urlBase + 'comment/file/' + id, $httpParamSerializer(data), {
+
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+        }
+
         ajaxFunctions.fileByUser = function (args) {
             return $http.get(urlBase + 'files/user/' + args);
         };
+
+        //elisa 10.2
+        ajaxFunctions.fileByType = function (args) {
+            return $http.get(urlBase + 'files/type/' + args);
+        };
+
+        ajaxFunctions.loadOneMedia = function (id) {
+            return $http.get(urlBase + 'file/' + id).success(function (data) {
+                return data;
+            });
+        };
+        ajaxFunctions.userById = function (id) {
+            return $http.get(urlBase + 'user/' + id).success(function (data) {
+                return data;
+            });
+        };
+        ajaxFunctions.getAllFiles = function () {
+            return $http.get('http://util.mw.metropolia.fi/ImageRekt/api/v2/files/').success(function (data) {
+                return data;
+            });
+        };
+        ajaxFunctions.commentsByFileId = function (id) {
+            return $http.get(urlBase + 'comments/file/' + id).success(function (data) {
+                return data;
+            });
+        };
+
+
 
         return ajaxFunctions;
     });

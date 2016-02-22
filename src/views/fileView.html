@@ -1,0 +1,32 @@
+<div ng-show="image" ng-controller="singleMediaController">
+
+
+    <div class="galleryItem">
+        <h3> {{ thisFile.title }}</h3> by <a href0 "#">{{ thisUser.username }}</a>
+
+
+        <div class="imageContainer">
+            <div ng-if="theFile.mimeType.substr(0,5) == 'image'">
+                <img ng-src="http://util.mw.metropolia.fi/uploads/{{ theFile.path }}" ng-swipe-left="nextImg()" ng-swipe-right="prevImg()">
+            </div>
+            <div ng-if="theFile.mimeType.substr(0,5) == 'audio'">
+                <audio controls>
+                    <source ng-src="{{trustSrc(theFile.path)}}" type="audio/mp4">
+                </audio>
+            </div>
+            <div ng-if="theFile.mimeType.substr(0,5) == 'video'">
+                <video controls>
+                    <source ng-src="{{trustSrc(theFile.path)}}" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div ng-repeat="comment in comments">
+            &lt;<a href0 "#">{{comment.username}}</a>&gt; {{comment.comment}}
+        </div>
+    </div>
+    <div class="imageDetails">
+       <comment-form></comment-form>
+        
+        <br>
+    </div>
+</div>

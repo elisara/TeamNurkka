@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="theme-color" content="#FF8C00">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,25 +14,21 @@
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body id="kaikki">
+<body id="wholeBody">
+
+    <!-- Top Nav -->
     <header class="nav-down">
         <nav>
-            <ul class="list-unstyled main-menu">
+            <ul class="list-unstyled main-menu" ng-controller="loginController">
 
                 <!--Include your navigation here-->
                 <li class="nav-close" style="text-align: right;"><a href="#">X</a></li>
-                <li><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-upload');">Upload </a></li>
+                <li ng-show="checkStorage()"><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-upload');">Upload </a></li>
                 <li><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-register');">Register </a></li>
-                <li><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-login');">Login </a></li>
-                <li><a href="#">Dropdown</a>
-                    <ul class="list-unstyled">
-                        <li class="sub-nav"><a href="#">Sub Menu One <span class="icon"></span></a></li>
-                        <li class="sub-nav"><a href="#">Sub Menu Two <span class="icon"></span></a></li>
-                        <li class="sub-nav"><a href="#">Sub Menu Three <span class="icon"></span></a></li>
-                        <li class="sub-nav"><a href="#">Sub Menu Four <span class="icon"></span></a></li>
-                        <li class="sub-nav"><a href="#">Sub Menu Five <span class="icon"></span></a></li>
-                    </ul>
-                </li>
+                <li ng-hide="checkStorage()"><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-login');">Login </a></li>
+                <li ng-show="checkStorage()"><a href="#" class="nav-close" ng-click="logout()">Logout</a></li>
+
+
                 <li><a href="#">Menu Four <span class="icon"></span></a></li>
                 <li><a href="#">Menu Five <span class="icon"></span></a></li>
             </ul>
@@ -52,7 +49,7 @@
 
 
 
-
+    <!-- Popup views -->
     <div id="popup-upload" class="popup-position">
         <div id="popup-wrapper">
             <div id="popup-container">
@@ -90,43 +87,36 @@
         </div>
     </div>
 
-
-    <div class="container" id="kuvat" ng-controller="AjaxCtrl">
-        <div class="theKuva" ng-show="image">
-            <img src="http://util.mw.metropolia.fi/uploads/{{ theFile.path }}" alt="http://util.mw.metropolia.fi/uploads/{{ theFile.title }}" ng-swipe-left="nextImg()" ng-swipe-right="prevImg()">
-            <div class="imageDetails">
-                <br>
-                <p>Title: {{ theFile.title }}</p>
-                <p>File ID: {{ theFile.fileId }}</p>
-            </div>
+    <!-- Content -->
+    <div class="container" id="gallery" ng-controller="galleryController">
+        <div class="col-xs-12" ng-controller="userFilesController">
+            <file-view></file-view>
         </div>
         <div class="col-xs-12">
-            <br>
             <br>
             <div ng-controller="userFilesController">
                 <show-files></show-files>
             </div>
 
+            <div ng-controller="fileTypeController">
+                <image-form></image-form>
+            </div>
         </div>
     </div>
-
-
-
-
-
-
+    
+    <!-- Bottom Nav -->
     <div class="navbar navbar-fixed-bottom" id="alanavi">
         <div class="container" id="alanavicontainer">
             <div class="row" id="alanavirow">
                 <ul id="naviul">
-                    <div class="col-xs-4" id="navidivi">
+                    <div class="col-xs-4" id="navidivi" ng-controller="fileTypeController">
                         <li>
                             <a href="#"><img src="images/audio.png"></a>
                         </li>
                     </div>
                     <div class="col-xs-4" id="navidivi">
                         <li>
-                            <a href="#"><img src="images/photos.png"></a>
+                            <a href="#" ng-click="sendImageId()"><img src="images/photos.png"></a>
                         </li>
                     </div>
                     <div class="col-xs-4" id="navidivi">
@@ -135,7 +125,6 @@
                         </li>
                     </div>
                 </ul>
-
             </div>
         </div>
     </div>
@@ -146,31 +135,36 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-    <!-- Include angular files & plugins -->
+    <!-- Angular files & plugins -->
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-touch/angular-touch.js"></script>
+    <script src="../bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
 
-    <!-- Include My App's JS file(s)-->
+    <!-- My App's JS file(s)-->
     <script src="app.js"></script>
-    <script src="ajaxService.js"></script>
-    <script src="ajaxController.js"></script>
     <script src="scripts/scrollNav.js"></script>
 
-    <!-- directives -->
+    <!-- Directives -->
     <script src="scripts/directives/registerForm.js"></script>
     <script src="scripts/directives/uploadForm.js"></script>
     <script src="scripts/directives/loginForm.js"></script>
     <script src="scripts/directives/fileFrom.js"></script>
     <script src="scripts/directives/showFiles.js"></script>
     <script src="scripts/directives/fileView.js"></script>
+    <script src="scripts/directives/imageForm.js"></script>
+    <script src="scripts/directives/commentForm.js"></script>
 
-    <!-- controllers -->
+    <!-- Controllers -->
+    <script src="scripts/controllers/galleryController.js"></script>
     <script src="scripts/controllers/registerController.js"></script>
     <script src="scripts/controllers/uploadController.js"></script>
     <script src="scripts/controllers/loginController.js"></script>
     <script src="scripts/controllers/userFilesController.js"></script>
+    <script src="scripts/controllers/fileTypeController.js"></script>
+    <script src="scripts/controllers/singleMediaController.js"></script>
 
-    <!-- servises -->
+
+    <!-- Servises -->
     <script src="scripts/services/ajaxFactory.js"></script>
     <script src="scripts/services/mediaService.js"></script>
 
@@ -180,12 +174,11 @@
         window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')
     </script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="js/jquery.navgoco.js"></script>
-    <script src="js/main.js"></script>
-
+    
+    
+    <!-- Scripts -->
     <script>
         $(document).ready(function () {
-
             //Navigation Menu Slider
             $('#nav-expander').on('click', function (e) {
                 e.preventDefault();
@@ -195,26 +188,6 @@
                 e.preventDefault();
                 $('body').removeClass('nav-expanded');
             });
-
-
-            // Initialize navgoco with default options
-            $(".main-menu").navgoco({
-                caret: '<span class="caret"></span>',
-                accordion: false,
-                openClass: 'open',
-                save: true,
-                cookie: {
-                    name: 'navgoco',
-                    expires: false,
-                    path: '/'
-                },
-                slide: {
-                    duration: 300,
-                    easing: 'swing'
-                }
-            });
-
-
         });
     </script>
 
@@ -230,7 +203,5 @@
         //-->
     </script>
 
-
 </body>
-
 </html>

@@ -68,8 +68,6 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
-        
-        
     }
     
     @media screen and (min-width: 700px) {
@@ -78,7 +76,6 @@
             display: block;
             margin-left: auto;
             margin-right: auto;
-            
         }
     }
     
@@ -209,6 +206,16 @@
         transition: top 0.2s ease-in-out;
         width: 100%;
         z-index: 998;
+    }
+    
+    #arrow {
+        padding: 10px;
+    }
+    
+    #arrow img {
+        height: 30px;
+        width: 30px;
+        margin-top: 10px;
     }
     
     .navbar.navbar-inverse-nav-links.navbar-fixed-bottom .navbar-collapse.collapse {
@@ -414,4 +421,10 @@
         background: rgba(0, 0, 0, 0.5);
         border: 2px, solid, black;
         border-radius: 7px;
+    }
+    
+    #loadmore {
+        text-align: center;
+        margin-bottom: 5em;
+        display: inline-block;
     }

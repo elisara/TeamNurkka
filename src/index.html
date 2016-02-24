@@ -34,10 +34,11 @@
             </ul>
         </nav>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-inverse navbar-fixed-top" ng-controller="galleryController">
 
             <!--Include your brand here-->
-            <a class="navbar-brand" href="index.html">KuvaNurkka</a>
+            <div ><a class="navbar-brand" href="index.html" ng-show="feed">KuvaNurkka</a></div>
+            <div ng-show="image"><a href="#" id="arrow" ><img src="images/leftArrow.png" ></a></div>
             <div class="navbar-header pull-right">
                 <a id="nav-expander" class="nav-expander fixed">
                     <img src="images/Menu-48.png"><i class="fa fa-bars fa-lg white"></i>
@@ -87,44 +88,45 @@
         </div>
     </div>
 
-    <!-- Content -->
+    <!— Content —>
     <div class="container" id="gallery" ng-controller="galleryController">
         <div class="col-xs-12" ng-controller="userFilesController">
             <file-view></file-view>
         </div>
         <div class="col-xs-12">
-            <br>
+            <br> 
             <div ng-controller="userFilesController">
                 <show-files></show-files>
             </div>
-
+           
             <div ng-controller="fileTypeController">
                 <image-form></image-form>
             </div>
         </div>
-    </div>
-    
-    <!-- Bottom Nav -->
-    <div class="navbar navbar-fixed-bottom" id="alanavi">
-        <div class="container" id="alanavicontainer">
-            <div class="row" id="alanavirow">
-                <ul id="naviul">
-                    <div class="col-xs-4" id="navidivi" ng-controller="fileTypeController">
-                        <li>
-                            <a href="#"><img src="images/audio.png"></a>
-                        </li>
-                    </div>
-                    <div class="col-xs-4" id="navidivi">
-                        <li>
-                            <a href="#" ng-click="sendImageId()"><img src="images/photos.png"></a>
-                        </li>
-                    </div>
-                    <div class="col-xs-4" id="navidivi">
-                        <li>
-                            <a href="#"><img src="images/film.png"></a>
-                        </li>
-                    </div>
-                </ul>
+
+
+        <!— Bottom Nav —>
+        <div class="navbar navbar-fixed-bottom" id="alanavi">
+            <div class="container" id="alanavicontainer">
+                <div class="row" id="alanavirow">
+                    <ul id="naviul">
+                        <div class="col-xs-4" id="navidivi" ng-controller="fileTypeController">
+                            <li>
+                                <a href="#"><img src="images/audio.png"></a>
+                            </li>
+                        </div>
+                        <div class="col-xs-4" id="navidivi">
+                            <li>
+                                <a href="#" ng-click="onlyImages()"><img src="images/photos.png"></a>
+                            </li>
+                        </div>
+                        <div class="col-xs-4" id="navidivi">
+                            <li>
+                                <a href="#"><img src="images/film.png"></a>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

@@ -4,6 +4,9 @@ angular.module('myApp')
         $scope.path = ajaxFactory.urlBaseImage;
         
 
+        ajaxFactory.getImageFiles().success(function (data){
+            $scope.imageFiles = data;
+        });
 
         $scope.getImage = function () {
             var request = ajaxFactory.fileByType('image');

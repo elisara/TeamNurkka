@@ -4,15 +4,9 @@ angular.module('myApp')
         $scope.feed = true;
         $scope.imageFeed = false;
 
-
-
         ajaxFactory.getAllFiles().success(function (data) {
             $scope.files = data;
         });
-
-
-
-
 
         $scope.sendId = function (file, index) {
             $scope.numero = index;
@@ -21,6 +15,7 @@ angular.module('myApp')
             //console.log($scope.theFile);
             $scope.image = true;
             $scope.feed = false;
+            $scope.imageFeed = false;
             MediaService.setVariable('theFile', file);
             return file;
 
@@ -52,6 +47,13 @@ angular.module('myApp')
             $scope.imageFeed = true;
             return file;
         };
+        $scope.onlyImages = function () {
+            $scope.image = false;
+            $scope.feed = false;
+            $scope.imageFeed = true;
+
+        };
+
         ajaxFactory.getAllFiles().success(function (data) {
             $scope.files = data;
             $scope.itemsPerPage = 12;

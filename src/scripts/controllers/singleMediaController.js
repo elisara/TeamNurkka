@@ -23,11 +23,11 @@ angular.module('myApp')
 
         });
 
-        
+
 
         $scope.comment = function () {
             var data = {
-                user: 13,
+                user: localStorage.getItem('loginId'),
                 comment: $scope.comment1,
 
             };
@@ -39,6 +39,12 @@ angular.module('myApp')
             }, function (error) {
                 console.log(error.data);
             });
+
+        };
+        $scope.isLogin = function () {
+
+            return localStorage.getItem('loginId') != null;
+
 
         };
 

@@ -64,6 +64,12 @@ angular.module('myApp')
                 return data;
             });
         };
+        ajaxFunctions.getImageFiles = function () {
+            return $http.get('http://util.mw.metropolia.fi/ImageRekt/api/v2/files/type/image/').success(function (data) {
+                return data;
+            });
+        };
+
         ajaxFunctions.commentsByFileId = function (id) {
             return $http.get(urlBase + 'comments/file/' + id).success(function (data) {
                 return data;

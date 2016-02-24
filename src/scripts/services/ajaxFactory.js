@@ -75,6 +75,20 @@ angular.module('myApp')
                 return data;
             });
         };
+            //elisa 24.2
+        ajaxFunctions.getVideoFiles = function () {
+            return $http.get('http://util.mw.metropolia.fi/ImageRekt/api/v2/files/type/video/').success(function (data) {
+                return data;
+            });
+        };
+
+        //elisa 24.2
+        ajaxFunctions.getAudioFiles = function () {
+            return $http.get('http://util.mw.metropolia.fi/ImageRekt/api/v2/files/type/audio/').success(function (data) {
+                return data;
+            });
+        };
+
 
 
 

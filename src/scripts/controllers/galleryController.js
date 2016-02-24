@@ -16,6 +16,8 @@ angular.module('myApp')
             $scope.image = true;
             $scope.feed = false;
             $scope.imageFeed = false;
+            $scope.videoFeed = false;
+            $scope.audioFeed = false;
             MediaService.setVariable('theFile', file);
             return file;
 
@@ -51,8 +53,29 @@ angular.module('myApp')
             $scope.image = false;
             $scope.feed = false;
             $scope.imageFeed = true;
+            $scope.audioFeed = false;
+            $scope.videoFeed = false;
 
         };
+
+        $scope.onlyVideos = function () {
+            $scope.image = false;
+            $scope.feed = false;
+            $scope.imageFeed = false;
+            $scope.videoFeed = true;
+            $scope.audioFeed = false;
+
+        };
+
+        $scope.onlyAudio = function () {
+            $scope.image = false;
+            $scope.feed = false;
+            $scope.imageFeed = false;
+            $scope.videoFeed = false;
+            $scope.audioFeed = true;
+
+        };
+
 
         ajaxFactory.getAllFiles().success(function (data) {
             $scope.files = data;

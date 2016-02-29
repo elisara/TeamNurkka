@@ -38,7 +38,7 @@ angular.module('myApp')
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             });
-        }
+        };
 
         ajaxFunctions.fileByUser = function (args) {
             return $http.get(urlBase + 'files/user/' + args);

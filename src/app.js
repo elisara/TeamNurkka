@@ -1,1 +1,1 @@
-angular.module('myApp', ['ngTouch', 'LocalStorageModule']);
+angular.module('myApp', ['ngTouch', 'LocalStorageModule', 'ngDialog']);

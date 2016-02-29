@@ -3,6 +3,8 @@ angular.module('myApp')
         $scope.image = false;
         $scope.feed = true;
         $scope.imageFeed = false;
+        $scope.viewNro = 1;
+       
 
         ajaxFactory.getAllFiles().success(function (data) {
             $scope.files = data;
@@ -23,6 +25,30 @@ angular.module('myApp')
 
         };
 
+        $scope.backIt = function () {
+
+            $scope.image = false;
+            $scope.feed = false;
+            $scope.imageFeed = false;
+            $scope.videoFeed = false;
+            $scope.audioFeed = false;
+            if ($scope.viewNro == 1) {
+                $scope.feed = true;
+            }
+            if ($scope.viewNro == 2) {
+                $scope.imageFeed = true;
+            }
+            if ($scope.viewNro == 3) {
+                $scope.videoFeed = true;
+            }
+            if ($scope.viewNro == 4) {
+                $scope.audioFeed = true;
+            }
+
+
+        };
+        
+
         $scope.nextImg = function () {
             $scope.numero++;
             console.log("Next: " + $scope.numero);
@@ -41,20 +67,13 @@ angular.module('myApp')
             $scope.theFile = $scope.changefile;
             console.log($scope.theFile);
         };
-        $scope.sendImageId = function (file) {
-            $scope.theFile = file;
-            console.log($scope.theFile);
-            $scope.image = false;
-            $scope.feed = false;
-            $scope.imageFeed = true;
-            return file;
-        };
         $scope.onlyImages = function () {
             $scope.image = false;
             $scope.feed = false;
             $scope.imageFeed = true;
             $scope.audioFeed = false;
             $scope.videoFeed = false;
+            $scope.viewNro = 2;
 
         };
 
@@ -64,6 +83,7 @@ angular.module('myApp')
             $scope.imageFeed = false;
             $scope.videoFeed = true;
             $scope.audioFeed = false;
+            $scope.viewNro = 3;
 
         };
 
@@ -73,6 +93,7 @@ angular.module('myApp')
             $scope.imageFeed = false;
             $scope.videoFeed = false;
             $scope.audioFeed = true;
+            $scope.viewNro = 4;
 
         };
 

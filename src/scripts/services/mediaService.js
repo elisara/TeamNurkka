@@ -3,6 +3,7 @@ angular.module('myApp')
         var mediaVariables = {
             mediaUrl: 'http://util.mw.metropolia.fi/uploads/',
             userData: {}
+            
         };
     
         mediaVariables.setVariable = function(key, value){

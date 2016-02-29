@@ -23,7 +23,7 @@ angular.module('myApp')
                     console.log("error:  " + error.data);
                 });
 
-            };
+            }
 
 
         });

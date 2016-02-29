@@ -22,10 +22,11 @@
     
     #overlayVideo img {
         opacity: 0.8;
-        height: 200px;
+        height: 100px;
         display: block;
         margin-left: auto;
         margin-right: auto;
+        margin-top: 40px;
     }
     
     .img {
@@ -52,6 +53,23 @@
         padding;
         3px 1%;
         color: rgb(221, 221, 209);
+    }
+    
+    .comment {
+        border-radius: 4px;
+        background-color: black !important;
+        margin: 2px;
+    }
+    
+    .comment1 {
+        margin-left: 5px;
+        font-size: 11px;
+    }
+    
+    .comment2 {
+        margin-left: 5px;
+        font-size: 15px;
+        padding-bottom: 3px;
     }
     
     .imageContainer {
@@ -320,12 +338,12 @@
     }
     
     .main-menu li a {
-        color: #6F7D8C;
+        color: #e6e6e6;
         text-decoration: none;
     }
     
     .main-menu li a:hover {
-        color: #FFFFFF;
+        color: #ff6600;
         text-decoration: none;
     }
     
@@ -427,4 +445,14 @@
         text-align: center;
         margin-bottom: 5em;
         display: inline-block;
+    }
+    
+    #naviul img {
+        height: 60px;
+    }
+    
+    #audio p {
+        text-align: center;
+        font-family: verdana;
+        color: #e6e6e6;
     }

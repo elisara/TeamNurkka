@@ -1,6 +1,6 @@
 angular.module('myApp')
-    .controller('loginController', function ($scope, $window, ajaxFactory, MediaService) {
-       
+    .controller('loginController', function ($scope, $window, ajaxFactory, MediaService, ngDialog) {
+
 
 
         $scope.login = function () {
@@ -25,7 +25,11 @@ angular.module('myApp')
                 console.log("userId: " + finalId);
 
                 localStorage.setItem("loginId", finalId);
-              
+
+                ngDialog.open({
+                    template: '<p>Login successful</p>',
+                    plain: true
+                });
 
 
 
@@ -41,9 +45,9 @@ angular.module('myApp')
             $window.location.reload();
         };
         $scope.checkStorage = function () {
-            
-            return localStorage.getItem('loginId') != null;
-           
-            
+
+            return localStorage.getItem('loginId') !== null;
+
+
         };
     });

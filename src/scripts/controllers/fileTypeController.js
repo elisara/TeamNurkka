@@ -14,6 +14,7 @@ angular.module('myApp')
 
         ajaxFactory.getAudioFiles().success(function (data) {
             $scope.audioFiles = data;
+            
         });
 
         //getting images from server

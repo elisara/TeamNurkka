@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .controller('registerController', function ($scope, $window, ajaxFactory, MediaService) {
+    .controller('registerController', function ($scope, $window, ajaxFactory, MediaService, ngDialog) {
 
 
         $scope.register = function () {
@@ -15,6 +15,11 @@ angular.module('myApp')
                 console.log(response.data);
                 MediaService.setVariable('userData', response.data);
                 $scope.logged = true;
+
+                ngDialog.open({
+                    template: '<p>Register completed!</p>',
+                    plain: true
+                });
                 //$window.location.reload();
             }, function (error) {
                 console.log(error.data);

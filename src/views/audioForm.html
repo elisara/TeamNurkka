@@ -2,9 +2,11 @@
     <div class="col-xs-12" ng-show="audioFeed">
         <div class="thumbnail" ng-repeat="file in audioFiles">
             <a href="#" ng-click="sendId(file, $index)">
-                <div ng-if="file.mimeType.substr(0,5) == 'audio'">
+                <div ng-if="file.mimeType.substr(0,5) == 'audio'" id="audio">
+                    <p ng-if="file.title.length <= 10">{{file.title}}</p>
+                        <p ng-if="file.title.length >10">{{file.title.slice(0,12)}}</p>
                     <div class="img" style="background-image:url({{path+file.thumbNails.medium}});" id="overlayVideo">
-                        <img src="images/audio.png">
+                        <img src="images/harmaacd.png">
                     </div>
 
                 </div>

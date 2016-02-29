@@ -8,14 +8,16 @@
                     <div class="img" style="background-image:url({{trustSrc(file.thumbNails.medium)}});">
                     </div>
                 </div>
-                <div ng-if="file.mimeType.substr(0,5) == 'audio'">
+                <div ng-if="file.mimeType.substr(0,5) == 'audio'" id="audio">
                     <div class="img" id="overlayVideo">
-                        <img src="images/audio.png">
+                        <p ng-if="file.title.length <= 10">{{file.title}}</p>
+                        <p ng-if="file.title.length >10">{{file.title.slice(0,12)}}</p>
+                        <img src="images/harmaacd.png">
                     </div>
                 </div>
                 <div ng-if="file.mimeType.substr(0,5) == 'video'">
                     <div class="img" style="background-image:url({{trustSrc(file.thumbNails.medium)}});" id="overlayVideo">
-                        <img src="images/play1.svg">
+                        <img src="images/harmaaplay.png">
                     </div>
                 </div>
             </a>

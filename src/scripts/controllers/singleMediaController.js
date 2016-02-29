@@ -2,6 +2,7 @@ angular.module('myApp')
     .controller('singleMediaController', function ($scope, $rootScope, ajaxFactory, MediaService) {
 
         var file = MediaService.theFile;
+        $scope.timeNow = new Date();
 
         $scope.$on('mediaevent', function (evt) {
             //console.log(MediaService.theFile.fileId);
@@ -24,6 +25,8 @@ angular.module('myApp')
         });
 
 
+       
+
 
         $scope.comment = function () {
             var data = {
@@ -43,7 +46,7 @@ angular.module('myApp')
         };
         $scope.isLogin = function () {
 
-            return localStorage.getItem('loginId') != null;
+            return localStorage.getItem('loginId') !== null;
 
 
         };

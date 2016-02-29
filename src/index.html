@@ -12,9 +12,10 @@
     <title>KuvaNurkka</title>
     <!-- Bootstrap -->
     <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/ng-dialog/0.2.3/css/ngDialog.css" />
 </head>
 
-<body id="wholeBody">
+<body id="wholeBody" ng-controller="galleryController">
 
     <!-- Top Nav -->
     <header class="nav-down">
@@ -24,24 +25,23 @@
                 <!--Include your navigation here-->
                 <li class="nav-close" style="text-align: right;"><a href="#">X</a></li>
                 <li ng-show="checkStorage()"><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-upload');">Upload </a></li>
-                <li><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-register');">Register </a></li>
+                <li ng-hide="checkStorage()"><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-register');">Register </a></li>
                 <li ng-hide="checkStorage()"><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-login');">Login </a></li>
                 <li ng-show="checkStorage()"><a href="#" class="nav-close" ng-click="logout()">Logout</a></li>
 
 
-                <li><a href="#">Menu Four <span class="icon"></span></a></li>
-                <li><a href="#">Menu Five <span class="icon"></span></a></li>
+             
             </ul>
         </nav>
 
-        <div class="navbar navbar-inverse navbar-fixed-top" ng-controller="galleryController">
+        <div class="navbar navbar-inverse navbar-fixed-top" >
 
-            <!--Include your brand here-->
-            <div ><a class="navbar-brand" href="index.html" ng-show="feed">KuvaNurkka</a></div>
-            <div ng-show="image"><a href="#" id="arrow" ng-show="image"><img src="images/leftArrow.png" ></a></div>
+           
+            <div ng-hide="image"><a href="index.html" ><img src="images/kuvanurkka.png"></a></div>
+            <div ng-show="image"><a href="" id="arrow"><img src="images/leftArrow.png"  ng-click="backIt()"></a></div>
             <div class="navbar-header pull-right">
                 <a id="nav-expander" class="nav-expander fixed">
-                    <img src="images/Menu-48.png"><i class="fa fa-bars fa-lg white"></i>
+                    <img src="images/menu.png"><i class="fa fa-bars fa-lg white"></i>
                 </a>
             </div>
         </div>
@@ -89,7 +89,7 @@
     </div>
 
    <!— Content —>
-    <div class="container" id="gallery" ng-controller="galleryController">
+    <div class="container" id="gallery">
         <div class="col-xs-12" ng-controller="userFilesController">
             <file-view></file-view>
         </div>
@@ -118,17 +118,17 @@
                     <ul id="naviul">
                         <div class="col-xs-4" id="navidivi" ng-controller="fileTypeController">
                             <li>
-                                <a href="#" ng-click="onlyAudio()"><img src="images/audio.png"></a>
+                                <a href="#" ng-click="onlyAudio()"><img src="images/cd.png"></a>
                             </li>
                         </div>
                         <div class="col-xs-4" id="navidivi">
                             <li>
-                                <a href="#" ng-click="onlyImages()"><img src="images/photos.png"></a>
+                                <a href="#" ng-click="onlyImages()"><img src="images/images.png"></a>
                             </li>
                         </div>
                         <div class="col-xs-4" id="navidivi">
                             <li>
-                                <a href="#" ng-click="onlyVideos()"><img src="images/film.png"></a>
+                                <a href="#" ng-click="onlyVideos()"><img src="images/oranssivideo.png"></a>
                             </li>
                         </div>
                     </ul>
@@ -146,10 +146,15 @@
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-touch/angular-touch.js"></script>
     <script src="../bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="../bower_components/ng-dialog/js/ngDialog.js"></script>
+    <script src="../bower_components/ng-dialog/css/ngDialog.css"</script>
+    <script src="../bower_components/ng-dialog/css/ngDialog-theme-default.css"></script>
+    <script src="../bower_components/moment/moment.js"></script>
 
     <!-- My App's JS file(s)-->
     <script src="app.js"></script>
     <script src="scripts/scrollNav.js"></script>
+    <script src="scripts/dateFilter.js"></script>
 
     <!-- Directives -->
     <script src="scripts/directives/registerForm.js"></script>

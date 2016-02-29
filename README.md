@@ -1,15 +1,47 @@
-# WBMA seed
+# TeamNurkka
 
-Project starting point template for Web Based Mobile Applications course.
+git add .
+<br>
+git commit -m "ksdhfisudhpif"
+<br>
+git remote add UUSINIMI https://github.com/elisara/TeamNurkka.git
+<br>
+git push -u UUSINIMI master   <--tai se branch minne koitetaan
+<br>
+<br>
 
-**Replace this with your own app's readme file.**
+vaihdetaan esim master testbranchiin:
+<br>
+git checkout testbranch
+<br>
 
-## Getting Started (better instructions on lessons)
 
-1. Install Git, Node.js (npm), grunt-cli & bower globally on your computer.
-2. Clone this repo.
-3. Modify `package.json` & `bower.json` files to match you app (name, version, description).
-4. `npm install` & `bower install` 
-5. Develop in _src/_ folder
-6. Build using `grunt`
-7. Publish your _build/_
+## TODO
+1.Yhden median sivu
+<br>
+-kuvaan upload time 
+<br>
+-median tiedot 
+<br>
+2.Kommentointi 
+<br>
+-kommentin aikaleima näkyviin 
+<br>
+3.Kuvien tykkäys 
+<br>
+4.Search
+<br>
+5.Värimaailma 
+<br>
+-yhtenäistäminen 
+<br>
+6.Login 
+<br>
+-jonnekkiin näkyviin jtn kun on kirjautubneena sisään <br>
+
+7.Hamppari-menu ja sen katoaminen ulos klikatessa <br>
+8.Sivulle vippasu/klikkaus seuraavaan kuvaan <br>
+9.Ala-menu-navi keskelle, iconit AUDIO, KUVA, VIDEO + transparency <br>
+10.Logo <br>
+11.Upload <br>
+-joku ilmotus onnistuneesta uploadauksesta <br>

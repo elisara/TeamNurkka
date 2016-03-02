@@ -11,8 +11,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>KuvaNurkka</title>
     <!-- Bootstrap -->
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/ng-dialog/0.2.3/css/ngDialog.css" />
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet"> />
 </head>
 
 <body id="wholeBody" ng-controller="galleryController">
@@ -25,20 +24,30 @@
                 <!--Include your navigation here-->
                 <li class="nav-close" style="text-align: right;"><a href="#">X</a></li>
                 <li ng-show="checkStorage()"><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-upload');">Upload </a></li>
+                <li ng-show="checkStorage()"><a href="#" class="nav-close" onclick="onlyOwn({{ownId}}))">Own files</a></li>
                 <li ng-hide="checkStorage()"><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-register');">Register </a></li>
                 <li ng-hide="checkStorage()"><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-login');">Login </a></li>
                 <li ng-show="checkStorage()"><a href="#" class="nav-close" ng-click="logout()">Logout</a></li>
+                <li>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <button class="button" type="submit" class="btn btn-default">Submit</button>
+                </li>
 
 
-             
             </ul>
         </nav>
 
-        <div class="navbar navbar-inverse navbar-fixed-top" >
+        <div class="navbar navbar-inverse navbar-fixed-top">
 
-           
-            <div ng-hide="image"><a href="index.html" ><img src="images/kuvanurkka.png"></a></div>
-            <div ng-show="image"><a href="" id="arrow"><img src="images/leftArrow.png"  ng-click="backIt()"></a></div>
+
+            <div ng-hide="image">
+                <a href="index.html" id="logo"><img src="images/kuvanurkka.png"></a>
+            </div>
+            <div ng-show="image">
+                <a href="" id="arrow"><img src="images/leftArrow.png" ng-click="backIt()"></a>
+            </div>
             <div class="navbar-header pull-right">
                 <a id="nav-expander" class="nav-expander fixed">
                     <img src="images/menu.png"><i class="fa fa-bars fa-lg white"></i>
@@ -75,6 +84,8 @@
             </div>
         </div>
     </div>
+
+
     <div id="popup-login" class="popup-position">
         <div id="popup-wrapper">
             <div id="popup-container">
@@ -88,17 +99,20 @@
         </div>
     </div>
 
-   <!— Content —>
+    <!— Content —>
     <div class="container" id="gallery">
         <div class="col-xs-12" ng-controller="userFilesController">
             <file-view></file-view>
         </div>
         <div class="col-xs-12">
-            <br> 
+            <br>
             <div ng-controller="userFilesController">
                 <show-files></show-files>
             </div>
-           
+            <div ng-controller="ownFilesController">
+                <own-form></own-form>
+            </div>
+
             <div ng-controller="fileTypeController">
                 <image-form></image-form>
             </div>
@@ -108,6 +122,7 @@
             <div ng-controller="fileTypeController">
                 <audio-form></audio-form>
             </div>
+
         </div>
 
 
@@ -131,24 +146,30 @@
                                 <a href="#" ng-click="onlyVideos()"><img src="images/oranssivideo.png"></a>
                             </li>
                         </div>
+                        <div class="col-xs-4" id="navidivi">
+                            <li>
+                                <a href="#" ng-click="onlyOwn(ownId)"><img src="images/menu.png"></a>
+                            </li>
+                        </div>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
     <!-- Angular files & plugins -->
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-touch/angular-touch.js"></script>
     <script src="../bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
     <script src="../bower_components/ng-dialog/js/ngDialog.js"></script>
-    <script src="../bower_components/ng-dialog/css/ngDialog.css"</script>
-    <script src="../bower_components/ng-dialog/css/ngDialog-theme-default.css"></script>
+    <script src="../bower_components/ng-dialog/css/ngDialog.css" </script>
+        < script src = "../bower_components/ng-dialog/css/ngDialog-theme-default.css" >
+    </script>
     <script src="../bower_components/moment/moment.js"></script>
 
     <!-- My App's JS file(s)-->
@@ -167,7 +188,8 @@
     <script src="scripts/directives/commentForm.js"></script>
     <script src="scripts/directives/audioForm.js"></script>
     <script src="scripts/directives/videoForm.js"></script>
-    
+    <script src="scripts/directives/ownForm.js"></script>
+
 
     <!-- Controllers -->
     <script src="scripts/controllers/galleryController.js"></script>
@@ -177,6 +199,7 @@
     <script src="scripts/controllers/userFilesController.js"></script>
     <script src="scripts/controllers/fileTypeController.js"></script>
     <script src="scripts/controllers/singleMediaController.js"></script>
+    <script src="scripts/controllers/ownFilesController.js"></script>
 
 
     <!-- Servises -->
@@ -184,13 +207,13 @@
     <script src="scripts/services/mediaService.js"></script>
 
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
     <script>
-        window.jQuery || document.write('<script src="js/jquery-1.10.2.min.js"><\/script>')
+        window.jQuery || document.write('<script src="js/jquery-1.10.2.js"><\/script>')
     </script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    
-    
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.js"></script>
+
+
     <!-- Scripts -->
     <script>
         $(document).ready(function () {
@@ -207,7 +230,6 @@
     </script>
 
     <script type="text/javascript">
-        <!--
         function toggle_visibility(id) {
             var e = document.getElementById(id);
             if (e.style.display == 'block')
@@ -215,8 +237,8 @@
             else
                 e.style.display = 'block';
         }
-        //-->
     </script>
 
 </body>
+
 </html>

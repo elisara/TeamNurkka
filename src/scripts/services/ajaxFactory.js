@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .factory('ajaxFactory', function ($http, $httpParamSerializer) {
+    .factory('ajaxFactory', [ '$http', '$httpParamSerializer', function ($http, $httpParamSerializer) {
         var urlBase = 'http://util.mw.metropolia.fi/ImageRekt/api/v2/';
 
         var ajaxFunctions = {};
@@ -75,7 +75,7 @@ angular.module('myApp')
                 return data;
             });
         };
-            //elisa 24.2
+        //elisa 24.2
         ajaxFunctions.getVideoFiles = function () {
             return $http.get('http://util.mw.metropolia.fi/ImageRekt/api/v2/files/type/video/').success(function (data) {
                 return data;
@@ -89,8 +89,23 @@ angular.module('myApp')
             });
         };
 
+        ajaxFunctions.searchTitle = function (args) {
+            return $http.post(urlBase + 'files/search/title', $httpParamSerializer(args), {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+        };
+        ajaxFunctions.searchDesc = function (args) {
+            return $http.post(urlBase + 'files/search/desc', $httpParamSerializer(args), {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+        };
+
 
 
 
         return ajaxFunctions;
-    });
+    }]);

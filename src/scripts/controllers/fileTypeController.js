@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .controller('fileTypeController', function ($scope, ajaxFactory) {
+    .controller('fileTypeController', [ '$scope', 'ajaxFactory', function ($scope, ajaxFactory) {
 
         $scope.path = ajaxFactory.urlBaseImage;
 
@@ -53,4 +53,4 @@ angular.module('myApp')
             });
         };
 
-    });
+    }]);

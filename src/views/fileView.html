@@ -1,15 +1,12 @@
-<div ng-show="image" ng-controller="singleMediaController" >
+<div ng-show="image" ng-controller="singleMediaController">
 
 
-    <div class="galleryItem" >
-        <h3> {{ thisFile.title }}</h3> by <a href0 "#">{{ thisUser.username }} </a>  ·  {{ thisFile.uploadTime | javaDate }}
-        
-        
-
+    <div class="galleryItem">
+        <h3> {{ thisFile.title }}</h3> by <a href="#" ng-click="onlyOwn({{thisUser.userId}})">{{ thisUser.username }} </a> · {{ thisFile.uploadTime | javaDate }}
 
         <div class="imageContainer" ng-swipe-left="nextImg()" ng-swipe-right="prevImg()">
             <div ng-if="theFile.mimeType.substr(0,5) == 'image'">
-                <img ng-src="http://util.mw.metropolia.fi/uploads/{{ theFile.path }}" >
+                <img ng-src="http://util.mw.metropolia.fi/uploads/{{ theFile.path }}">
             </div>
             <div ng-if="theFile.mimeType.substr(0,5) == 'audio'">
                 <audio controls>
@@ -25,13 +22,16 @@
         <div ng-repeat="comment in comments" class="comment">
             <div class="comment1"><a href0 "#">{{comment.username}}</a> · {{ comment.time | javaDate }}</div>
             <div class="comment2">{{comment.comment}}</div>
-             
+
         </div>
         <div></div>
     </div>
+    
     <div class="imageDetails" ng-show="isLogin()">
-       <comment-form></comment-form>
-        
+        <comment-form></comment-form>
+        <br>
+        <br>
+        <br>
         <br>
     </div>
 </div>

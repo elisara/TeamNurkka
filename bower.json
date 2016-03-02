@@ -11,9 +11,9 @@
     "angular": "^1.5.0",
     "angular-touch": "~1.5.0",
     "angular-local-storage": "~0.2.3",
-    "moment": "~2.11.2"
+    "moment": "^2.11.2"
   },
   "resolutions": {
-    "angular": "1.5.0"
+    "angular": "^1.x"
   }
 }

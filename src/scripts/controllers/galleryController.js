@@ -1,10 +1,14 @@
 angular.module('myApp')
-    .controller('galleryController', function ($scope, $rootScope, ajaxFactory, MediaService) {
+    .controller('galleryController', [ '$scope', '$rootScope', 'ajaxFactory', 'MediaService', function ($scope, $rootScope, ajaxFactory, MediaService) {
         $scope.image = false;
         $scope.feed = true;
         $scope.imageFeed = false;
+        $scope.ownFeed = false;
         $scope.viewNro = 1;
-       
+        $scope.ownId = localStorage.getItem('loginId');
+        console.log($scope.ownId);
+        
+
 
         ajaxFactory.getAllFiles().success(function (data) {
             $scope.files = data;
@@ -20,6 +24,7 @@ angular.module('myApp')
             $scope.imageFeed = false;
             $scope.videoFeed = false;
             $scope.audioFeed = false;
+            $scope.ownFeed = false;
             MediaService.setVariable('theFile', file);
             return file;
 
@@ -32,6 +37,7 @@ angular.module('myApp')
             $scope.imageFeed = false;
             $scope.videoFeed = false;
             $scope.audioFeed = false;
+            $scope.ownFeed = false;
             if ($scope.viewNro == 1) {
                 $scope.feed = true;
             }
@@ -44,10 +50,13 @@ angular.module('myApp')
             if ($scope.viewNro == 4) {
                 $scope.audioFeed = true;
             }
+            if ($scope.viewNro == 5) {
+                $scope.ownFeed = true;
+            }
 
 
         };
-        
+
 
         $scope.nextImg = function () {
             $scope.numero++;
@@ -73,9 +82,11 @@ angular.module('myApp')
             $scope.imageFeed = true;
             $scope.audioFeed = false;
             $scope.videoFeed = false;
+            $scope.ownFeed = false;
             $scope.viewNro = 2;
 
         };
+
 
         $scope.onlyVideos = function () {
             $scope.image = false;
@@ -83,6 +94,7 @@ angular.module('myApp')
             $scope.imageFeed = false;
             $scope.videoFeed = true;
             $scope.audioFeed = false;
+            $scope.ownFeed = false;
             $scope.viewNro = 3;
 
         };
@@ -93,14 +105,52 @@ angular.module('myApp')
             $scope.imageFeed = false;
             $scope.videoFeed = false;
             $scope.audioFeed = true;
+            $scope.ownFeed = false;
             $scope.viewNro = 4;
+
+        };
+
+        $scope.onlyOwn = function (args) {
+            $scope.usedId = args;
+            ajaxFactory.fileByUser($scope.usedId).success(function (data) {
+            $scope.ownFiles = data;
+            $scope.itemsPerPage = 30;
+            $scope.currentPage = 0;
+            $scope.total = $scope.ownFiles.length;
+            $scope.pagedFiles = $scope.ownFiles.slice($scope.currentPage * $scope.itemsPerPage,
+                $scope.currentPage * $scope.itemsPerPage + $scope.itemsPerPage);
+
+            $scope.loadMore = function () {
+                $scope.currentPage++;
+                var newItems = $scope.ownFiles.slice($scope.currentPage * $scope.itemsPerPage,
+                    $scope.currentPage * $scope.itemsPerPage + $scope.itemsPerPage);
+                $scope.pagedFiles = $scope.pagedFiles.concat(newItems);
+            };
+
+            $scope.nextPageDisabledClass = function () {
+                return $scope.currentPage === $scope.pageCount() - 1 ? "disabled" : "";
+            };
+
+            $scope.pageCount = function () {
+                return Math.ceil($scope.total / $scope.itemsPerPage);
+            };
+        });
+            console.log(args);
+            console.log("Only own files!");
+            $scope.image = false;
+            $scope.feed = false;
+            $scope.imageFeed = false;
+            $scope.videoFeed = false;
+            $scope.audioFeed = false;
+            $scope.ownFeed = true;
+            $scope.viewNro = 5;
 
         };
 
 
         ajaxFactory.getAllFiles().success(function (data) {
             $scope.files = data;
-            $scope.itemsPerPage = 12;
+            $scope.itemsPerPage = 30;
             $scope.currentPage = 0;
             $scope.total = $scope.files.length;
             $scope.pagedFiles = $scope.files.slice($scope.currentPage * $scope.itemsPerPage,
@@ -121,4 +171,6 @@ angular.module('myApp')
                 return Math.ceil($scope.total / $scope.itemsPerPage);
             };
         });
-    });
+
+        
+    }]);

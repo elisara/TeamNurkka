@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .controller('uploadController', function ($scope, $window, ajaxFactory) {
+    .controller('uploadController', [ '$scope', '$window', 'ajaxFactory', function ($scope, $window, ajaxFactory) {
         $scope.setMediaFile = function (element) {
             $scope.mimeType = element.files[0].type;
             $scope.type = $scope.mimeType.substr(0,5);
@@ -22,4 +22,4 @@ angular.module('myApp')
             });
 
         };
-    });
+    }]);

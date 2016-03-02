@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .controller('registerController', function ($scope, $window, ajaxFactory, MediaService, ngDialog) {
+    .controller('registerController', [ '$scope', '$window', 'ajaxFactory', 'MediaService', 'ngDialog', function ($scope, $window, ajaxFactory, MediaService, ngDialog) {
 
 
         $scope.register = function () {
@@ -26,4 +26,4 @@ angular.module('myApp')
             });
 
         };
-    });
+    }]);

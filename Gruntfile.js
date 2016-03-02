@@ -9,9 +9,13 @@ module.exports = function(grunt) {
       options: {},
       vendor: {
         src: [
-              'bower_components/jquery/dist/jquery.min.js',
-              'bower_components/bootstrap/dist/js/bootstrap.min.js',
-              'bower_components/angular/angular.min.js'
+              'bower_components/jquery/dist/jquery.js',
+              'bower_components/bootstrap/dist/js/bootstrap.js',
+              'bower_components/angular/angular.js',
+              'bower_components/angular-touch/angular-touch.js',
+              'bower_components/angular-local-storage/dist/angular-local-storage.js',
+              'bower_components/ng-dialog/js/ngDialog.js',
+              'bower_components/moment/moment.js'
              ],
         dest: 'build/vendor.js'
       },
@@ -48,11 +52,27 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           flatten: true,
-          src: ['bower_components/bootstrap/dist/css/bootstrap.min.css',
+          src: ['bower_components/bootstrap/dist/css/bootstrap.css',
                 'src/**/*.css'],
-          dest: 'build/css/'
+          dest: 'build/styles/'
         }]
-      },      
+      },
+        images: {
+        files: [{
+          expand: true,
+          flatten: true,
+          src: ['src/images/*'],
+          dest: 'build/images/'
+        }]
+      },
+        views: {
+        files: [{
+          expand: true,
+          flatten: true,
+          src: ['src/views/*'],
+          dest: 'build/views/'
+        }]
+      },
       html: {
         files: [{
           expand: true,

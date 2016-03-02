@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .controller('singleMediaController', function ($scope, $rootScope, ajaxFactory, MediaService) {
+    .controller('singleMediaController',[ '$scope', '$rootScope', 'ajaxFactory', 'MediaService',  function ($scope, $rootScope, ajaxFactory, MediaService) {
 
         var file = MediaService.theFile;
         $scope.timeNow = new Date();
@@ -11,7 +11,7 @@ angular.module('myApp')
                 //console.log($scope.thisFile.userId);
                 ajaxFactory.userById($scope.thisFile.userId).success(function (data) {
                     $scope.thisUser = data;
-                    //console.log($scope.thisUser);
+                    console.log("USER ID: " +$scope.thisUser.userId);
                 });
                 ajaxFactory.commentsByFileId(MediaService.theFile.fileId).success(function (data) {
                     $scope.comments = data;
@@ -24,19 +24,13 @@ angular.module('myApp')
 
         });
 
-
-       
-
-
         $scope.comment = function () {
             var data = {
                 user: localStorage.getItem('loginId'),
                 comment: $scope.comment1,
-
             };
 
             var request = ajaxFactory.comment(data, MediaService.theFile.fileId);
-
             request.then(function (response) {
                 console.log(response.data);
             }, function (error) {
@@ -44,14 +38,9 @@ angular.module('myApp')
             });
 
         };
+    
         $scope.isLogin = function () {
-
             return localStorage.getItem('loginId') !== null;
-
-
         };
 
-
-
-
-    });
+    }]);

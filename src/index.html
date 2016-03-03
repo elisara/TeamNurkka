@@ -24,7 +24,7 @@
                 <!--Include your navigation here-->
                 <li class="nav-close" style="text-align: right;"><a href="#">X</a></li>
                 <li ng-show="checkStorage()"><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-upload');">Upload </a></li>
-                <li ng-show="checkStorage()"><a href="#" class="nav-close" onclick="onlyOwn({{ownId}}))">Own files</a></li>
+                <li ng-show="checkStorage()"><a href="#" class="nav-close" ng-click="onlyOwn(ownId)">Own files</a></li>
                 <li ng-hide="checkStorage()"><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-register');">Register </a></li>
                 <li ng-hide="checkStorage()"><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-login');">Login </a></li>
                 <li ng-show="checkStorage()"><a href="#" class="nav-close" ng-click="logout()">Logout</a></li>
@@ -101,7 +101,7 @@
 
     <!— Content —>
     <div class="container" id="gallery">
-        <div class="col-xs-12" ng-controller="userFilesController">
+        <div class="col-xs-12">
             <file-view></file-view>
         </div>
         <div class="col-xs-12">
@@ -146,11 +146,7 @@
                                 <a href="#" ng-click="onlyVideos()"><img src="images/oranssivideo.png"></a>
                             </li>
                         </div>
-                        <div class="col-xs-4" id="navidivi">
-                            <li>
-                                <a href="#" ng-click="onlyOwn(ownId)"><img src="images/menu.png"></a>
-                            </li>
-                        </div>
+                       
                     </ul>
                 </div>
             </div>

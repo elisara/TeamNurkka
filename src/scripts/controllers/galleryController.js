@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .controller('galleryController', [ '$scope', '$rootScope', 'ajaxFactory', 'MediaService', function ($scope, $rootScope, ajaxFactory, MediaService) {
+    .controller('galleryController', ['$scope', '$rootScope', 'ajaxFactory', 'MediaService', function ($scope, $rootScope, ajaxFactory, MediaService) {
         $scope.image = false;
         $scope.feed = true;
         $scope.imageFeed = false;
@@ -7,7 +7,51 @@ angular.module('myApp')
         $scope.viewNro = 1;
         $scope.ownId = localStorage.getItem('loginId');
         console.log($scope.ownId);
-        
+
+
+        var file = MediaService.theFile;
+        $scope.timeNow = new Date();
+
+        $scope.$on('mediaevent', function (evt) {
+            //console.log(MediaService.theFile.fileId);
+            ajaxFactory.loadOneMedia(MediaService.theFile.fileId).success(function (data) {
+                $scope.thisFile = data;
+                //console.log($scope.thisFile.userId);
+                ajaxFactory.userById($scope.thisFile.userId).success(function (data) {
+                    $scope.thisUser = data;
+                    $scope.ownImagesId = $scope.thisUser.userId;
+                     
+                });
+                ajaxFactory.commentsByFileId(MediaService.theFile.fileId).success(function (data) {
+                    $scope.comments = data;
+                    //$scope.commentOwnId = $scope.comments.userId;
+                    //console.log($scope.thisUser);
+                });
+
+            });
+
+
+        });
+
+        $scope.comment = function () {
+            var data = {
+                user: localStorage.getItem('loginId'),
+                comment: $scope.comment1,
+            };
+
+            var request = ajaxFactory.comment(data, MediaService.theFile.fileId);
+            request.then(function (response) {
+                console.log(response.data);
+            }, function (error) {
+                console.log(error.data);
+            });
+
+        };
+
+        $scope.isLogin = function () {
+            return localStorage.getItem('loginId') !== null;
+        };
+
 
 
         ajaxFactory.getAllFiles().success(function (data) {
@@ -113,28 +157,28 @@ angular.module('myApp')
         $scope.onlyOwn = function (args) {
             $scope.usedId = args;
             ajaxFactory.fileByUser($scope.usedId).success(function (data) {
-            $scope.ownFiles = data;
-            $scope.itemsPerPage = 30;
-            $scope.currentPage = 0;
-            $scope.total = $scope.ownFiles.length;
-            $scope.pagedFiles = $scope.ownFiles.slice($scope.currentPage * $scope.itemsPerPage,
-                $scope.currentPage * $scope.itemsPerPage + $scope.itemsPerPage);
-
-            $scope.loadMore = function () {
-                $scope.currentPage++;
-                var newItems = $scope.ownFiles.slice($scope.currentPage * $scope.itemsPerPage,
+                $scope.ownFiles = data;
+                $scope.itemsPerPage = 30;
+                $scope.currentPage = 0;
+                $scope.total = $scope.ownFiles.length;
+                $scope.pagedFiles = $scope.ownFiles.slice($scope.currentPage * $scope.itemsPerPage,
                     $scope.currentPage * $scope.itemsPerPage + $scope.itemsPerPage);
-                $scope.pagedFiles = $scope.pagedFiles.concat(newItems);
-            };
 
-            $scope.nextPageDisabledClass = function () {
-                return $scope.currentPage === $scope.pageCount() - 1 ? "disabled" : "";
-            };
+                $scope.loadMore = function () {
+                    $scope.currentPage++;
+                    var newItems = $scope.ownFiles.slice($scope.currentPage * $scope.itemsPerPage,
+                        $scope.currentPage * $scope.itemsPerPage + $scope.itemsPerPage);
+                    $scope.pagedFiles = $scope.pagedFiles.concat(newItems);
+                };
 
-            $scope.pageCount = function () {
-                return Math.ceil($scope.total / $scope.itemsPerPage);
-            };
-        });
+                $scope.nextPageDisabledClass = function () {
+                    return $scope.currentPage === $scope.pageCount() - 1 ? "disabled" : "";
+                };
+
+                $scope.pageCount = function () {
+                    return Math.ceil($scope.total / $scope.itemsPerPage);
+                };
+            });
             console.log(args);
             console.log("Only own files!");
             $scope.image = false;
@@ -172,5 +216,5 @@ angular.module('myApp')
             };
         });
 
-        
+
     }]);

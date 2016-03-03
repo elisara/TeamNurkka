@@ -1,8 +1,8 @@
-<div ng-show="image" ng-controller="singleMediaController">
+<div ng-show="image" ng-controller="galleryController">
 
 
     <div class="galleryItem">
-        <h3> {{ thisFile.title }}</h3> by <a href="#" ng-click="onlyOwn({{thisUser.userId}})">{{ thisUser.username }} </a> · {{ thisFile.uploadTime | javaDate }}
+        <h3> {{ thisFile.title }}</h3> by <a href="#" ng-click="onlyOwn(ownImagesId)">{{ thisUser.username }}</a> · {{ thisFile.uploadTime | javaDate }}
 
         <div class="imageContainer" ng-swipe-left="nextImg()" ng-swipe-right="prevImg()">
             <div ng-if="theFile.mimeType.substr(0,5) == 'image'">
@@ -20,7 +20,7 @@
             </div>
         </div>
         <div ng-repeat="comment in comments" class="comment">
-            <div class="comment1"><a href0 "#">{{comment.username}}</a> · {{ comment.time | javaDate }}</div>
+            <div class="comment1"><a href= "#" ng-click="onlyOwn(comment.userId)">{{comment.username}}</a> · {{ comment.time | javaDate }}</div>
             <div class="comment2">{{comment.comment}}</div>
 
         </div>

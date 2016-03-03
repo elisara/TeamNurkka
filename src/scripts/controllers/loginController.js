@@ -1,17 +1,12 @@
 angular.module('myApp')
     .controller('loginController', [ '$scope', '$window', 'ajaxFactory', 'MediaService', 'ngDialog', function ($scope, $window, ajaxFactory, MediaService, ngDialog) {
 
-
-
         $scope.login = function () {
             var data = {
                 username: $scope.uname,
                 password: $scope.pwd,
 
             };
-
-
-
 
             var request = ajaxFactory.login(data);
 

@@ -7,8 +7,10 @@ angular.module('myApp')
 
 
         $scope.sendImage = function () {
+            $scope.uploadId = localStorage.getItem('loginId');
+            console.log("UPLOADIS ID: " + localStorage.getItem('loginId'));
             var fd = new FormData(document.getElementById('uploadForm'));
-            fd.append('user', 13);
+            fd.append('user', $scope.uploadId);
             fd.append('type', $scope.type);
             fd.append('mime-type', $scope.mimeType);
             
@@ -16,7 +18,7 @@ angular.module('myApp')
             
             request.then(function (response) {
                 console.log(response.data);
-                $window.location.reload();
+                //$window.location.reload();
             }, function (error) {
                 console.log(error.data);
             });

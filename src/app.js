@@ -25,7 +25,7 @@ angular.module('myApp', ['ngRoute', 'ngTouch', 'LocalStorageModule', 'ngDialog']
                 templateUrl: 'views/fileView.html',
                 controller: 'singleMediaController'
             })
-        .when('/search', {
+        .when('/search/:aTitle', {
                 templateUrl: 'views/searchForm.html',
                 controller: 'searchController'
             })

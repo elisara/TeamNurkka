@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .controller('galleryController', ['$scope', '$rootScope', 'ajaxFactory', 'MediaService', '$routeParams', function ($scope, $rootScope, ajaxFactory, MediaService, $routeParams) {
+    .controller('galleryController', ['$scope', '$rootScope', 'ajaxFactory', 'MediaService', '$routeParams', '$window', function ($scope, $rootScope, ajaxFactory, MediaService, $routeParams, $window) {
        
         $scope.viewNro = 1;
         $scope.ownId = localStorage.getItem('loginId');
@@ -35,33 +35,7 @@ angular.module('myApp')
 
         };
 
-        $scope.backIt = function () {
-
-            $scope.image = false;
-            $scope.feed = false;
-            $scope.imageFeed = false;
-            $scope.videoFeed = false;
-            $scope.audioFeed = false;
-            $scope.ownFeed = false;
-            if ($scope.viewNro == 1) {
-                $scope.feed = true;
-            }
-            if ($scope.viewNro == 2) {
-                $scope.imageFeed = true;
-            }
-            if ($scope.viewNro == 3) {
-                $scope.videoFeed = true;
-            }
-            if ($scope.viewNro == 4) {
-                $scope.audioFeed = true;
-            }
-            if ($scope.viewNro == 5) {
-                $scope.ownFeed = true;
-            }
-
-
-        };
-
+       
 
         $scope.nextImg = function () {
             $scope.numero++;
@@ -71,6 +45,7 @@ angular.module('myApp')
             $scope.changefile = $scope.files[$scope.numero];
             $scope.theFile = $scope.changefile;
             console.log($scope.theFile);
+            $window.location.reload();
         };
         $scope.prevImg = function () {
             $scope.numero--;

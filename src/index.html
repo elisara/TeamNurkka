@@ -18,111 +18,106 @@
 
     <!-- Top Nav -->
     <div class="container" id="gallery">
-    <header class="nav-down">
-        <nav>
-            <ul class="list-unstyled main-menu" >
+        <header class="nav-down">
+            <nav>
+                <ul class="list-unstyled main-menu">
 
-                <!--Include your navigation here-->
-                <li class="nav-close" style="text-align: right;">
-                    <a href="#">X</a>
-                </li>
-                <li ng-show="isLoggedIn()">
-                    <a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-upload');">Upload </a>
-                </li>
-                <li ng-show="isLoggedIn()">
-                    <a href="#/ownpage/{{ownId}}">Own Page</a>
-                </li>
-                <li ng-hide="isLoggedIn()">
-                    <a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-register');">Register </a>
-                </li>
-                <div ng-controller="loginController">
-                <li ng-hide="isLoggedIn()">
-                    <a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-login');">Login </a>
-                </li>
-                <li ng-show="isLoggedIn()">
-                    <a href="#" class="nav-close" ng-click="logout()">Logout</a>
-                </li>
-                </div>
-                <li>
-                   <form id="searchForm" enctype="application/x-www-form-urlencoded">
-                    <div class="form-group" ng-controller="searchController">
-                         <p>{{aTitle}}</p>
-                        <input type="text" name="search" class="form-control" placeholder="Search" ng-model='aTitle'>
-                       
-                    </div>
-                       <button class="button" ><a href="#/search">Submit</a></button>
-                    </form>
-                </li>
-            </ul>
-        </nav>
-
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div ng-hide="image">
-                <a href="#/" id="logo"><img src="images/kuvanurkka.png"></a>
-            </div>
-            <div ng-show="image">
-                <a href="" id="arrow"><img src="images/leftArrow.png" ng-click="backIt()"></a>
-            </div>
-            <div class="navbar-header pull-right">
-                <a id="nav-expander" class="nav-expander fixed">
-                    <img src="images/menu.png"><i class="fa fa-bars fa-lg white"></i>
-                </a>
-            </div>
-        </div>
-    </header>
-
-
-    <!-- Popup views -->
-    <div id="popup-upload" class="popup-position">
-        <div id="popup-wrapper">
-            <div id="popup-container">
-                <div class="upload">
-                    <div class="closeX"><a href="javascript:void(0)" onclick="toggle_visibility('popup-upload');">X </a></div>
-                    <div ng-controller="uploadController">
-                        <upload-form></upload-form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="popup-register" class="popup-position">
-        <div id="popup-wrapper">
-            <div id="popup-container">
-                <div class="register">
-                    <div class="closeX"><a href="javascript:void(0)" onclick="toggle_visibility('popup-register');">X </a></div>
-                    <div ng-controller="registerController">
-                        <register-form></register-form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div id="popup-login" class="popup-position">
-        <div id="popup-wrapper">
-            <div id="popup-container">
-                <div class="login">
-                    <div class="closeX"><a href="javascript:void(0)" onclick="toggle_visibility('popup-login');">X </a></div>
+                    <!--Include your navigation here-->
+                    <li class="nav-close" style="text-align: right;">
+                        <a href="#">X</a>
+                    </li>
+                    <li ng-show="isLoggedIn()">
+                        <a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-upload');">Upload </a>
+                    </li>
+                    <li ng-show="isLoggedIn()">
+                        <a href="#/ownpage/{{ownId}}">Own Page</a>
+                    </li>
+                    <li ng-hide="isLoggedIn()">
+                        <a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-register');">Register </a>
+                    </li>
                     <div ng-controller="loginController">
-                        <login-form></login-form>
+                        <li ng-hide="isLoggedIn()">
+                            <a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-login');">Login </a>
+                        </li>
+                        <li ng-show="isLoggedIn()">
+                            <a href="#" class="nav-close" ng-click="logout()">Logout</a>
+                        </li>
+                    </div>
+                    <li>
+                        <div>
+                            <input type="text" name="search" class="form-control" placeholder="Search" ng-model="aTitle">
+                            <br>
+                            <button class="button"><a href="#/search/{{aTitle}}">Submit</a></button>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div>
+                    <a href="#/" id="logo"><img src="images/kuvanurkka.png"></a>
+                </div>
+                
+                <div class="navbar-header pull-right">
+                    <a id="nav-expander" class="nav-expander fixed">
+                        <img src="images/menu.png"><i class="fa fa-bars fa-lg white"></i>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+
+        <!-- Popup views -->
+        <div id="popup-upload" class="popup-position">
+            <div id="popup-wrapper">
+                <div id="popup-container">
+                    <div class="upload">
+                        <div class="closeX"><a href="javascript:void(0)" onclick="toggle_visibility('popup-upload');">X </a></div>
+                        <div ng-controller="uploadController">
+                            <upload-form></upload-form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <div id="popup-register" class="popup-position">
+            <div id="popup-wrapper">
+                <div id="popup-container">
+                    <div class="register">
+                        <div class="closeX"><a href="javascript:void(0)" onclick="toggle_visibility('popup-register');">X </a></div>
+                        <div ng-controller="registerController">
+                            <register-form></register-form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <!— Content —>
-    
+
+        <div id="popup-login" class="popup-position">
+            <div id="popup-wrapper">
+                <div id="popup-container">
+                    <div class="login">
+                        <div class="closeX"><a href="javascript:void(0)" onclick="toggle_visibility('popup-login');">X </a></div>
+                        <div ng-controller="loginController">
+                            <login-form></login-form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!— Content —>
+
         <div ng-view></div>
-        
+
 
         <!— Bottom Nav —>
         <div class="navbar navbar-fixed-bottom" id="alanavi">
             <div class="container" id="alanavicontainer">
                 <div class="row" id="alanavirow">
                     <ul id="naviul">
-                        <div class="col-xs-4" id="navidivi" >
+                        <div class="col-xs-4" id="navidivi">
                             <li>
                                 <a href="#/audio"><img src="images/cd.png"></a>
                             </li>
@@ -134,7 +129,7 @@
                         </div>
                         <div class="col-xs-4" id="navidivi">
                             <li>
-                                <a href="#/videos" ><img src="images/oranssivideo.png"></a>
+                                <a href="#/videos"><img src="images/oranssivideo.png"></a>
                             </li>
                         </div>
 
@@ -155,14 +150,16 @@
     <script src="../bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
     <script src="../bower_components/ng-dialog/js/ngDialog.js"></script>
     <script src="../bower_components/ng-dialog/css/ngDialog.css" </script>
-    <script src = "../bower_components/ng-dialog/css/ngDialog-theme-default.css" >
+        < script src = "../bower_components/ng-dialog/css/ngDialog-theme-default.css" >
     </script>
     <script src="../bower_components/moment/moment.js"></script>
     <script src="../bower_components/angular-route/angular-route.js"></script>
-        <!-- My App's JS file(s)-->
+    <!-- My App's JS file(s)-->
     <script src="app.js"></script>
     <script src="scripts/scrollNav.js"></script>
     <script src="scripts/dateFilter.js"></script>
+    <script src="scripts/popUp.js"></script>
+    <script src="scripts/navSlide.js"></script>
 
 
     <!-- Directives -->
@@ -190,7 +187,7 @@
     <script src="scripts/controllers/singleMediaController.js"></script>
     <script src="scripts/controllers/ownFilesController.js"></script>
     <script src="scripts/controllers/searchController.js"></script>
-    
+
 
 
     <!-- Servises -->
@@ -198,37 +195,7 @@
     <script src="scripts/services/mediaService.js"></script>
 
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
-    <script>
-        window.jQuery || document.write('<script src="js/jquery-1.10.2.js"><\/script>')
-    </script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.js"></script>
-
-
-    <!-- Scripts -->
-    <script>
-        $(document).ready(function () {
-            //Navigation Menu Slider
-            $('#nav-expander').on('click', function (e) {
-                e.preventDefault();
-                $('body').toggleClass('nav-expanded');
-            });
-            $('.nav-close').on('click', function (e) {
-                e.preventDefault();
-                $('body').removeClass('nav-expanded');
-            });
-        });
-    </script>
-
-    <script type="text/javascript">
-        function toggle_visibility(id) {
-            var e = document.getElementById(id);
-            if (e.style.display == 'block')
-                e.style.display = 'none';
-            else
-                e.style.display = 'block';
-        }
-    </script>
+    
 
 </body>
 

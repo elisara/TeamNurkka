@@ -4,12 +4,11 @@ angular.module('myApp')
         $scope.trustSrc = function (src) {
             return $sce.trustAsResourceUrl(MediaService.mediaUrl + src);
         };
-
-        
-       
+  
             var data = {
                 title: $scope.aTitle
             };
+        
              
             console.log(data);
             var request = ajaxFactory.searchTitle(data);
@@ -22,8 +21,4 @@ angular.module('myApp')
             }, function (error) {
                 console.log(error.data);
             });
-
-     
-
-
         }]);

@@ -9,27 +9,27 @@ angular.module('myApp')
             };
 
             var request = ajaxFactory.login(data);
-
             request.then(function (response) {
 
-                MediaService.setVariable('userData', response.data);
-                $scope.logged = true;
-                var finalId = angular.fromJson(response.data.userId);
-
-
-                console.log("userId: " + finalId);
-                localStorage.setItem("loginId", finalId);
-                ngDialog.open({
-                    template: '<p>Login successful</p>',
-                    plain: true
-                });
-
-
-
+                if (response.data.status == "login ok") {
+                    //MediaService.setVariable('userData', response.data);
+                    var finalId = angular.fromJson(response.data.userId);
+                    console.log("userId: " + finalId);
+                    localStorage.setItem("loginId", finalId);
+                    ngDialog.open({
+                        template: '<p>Login successful</p>',
+                        plain: true
+                    });
+                } else {
+                    ngDialog.open({
+                        template: 'Wrong username or password',
+                        plain: true
+                    });
+                }
             }, function (error) {
                 console.log(error.data);
             });
-
+            $window.location.reload();
         };
 
         $scope.logout = function () {

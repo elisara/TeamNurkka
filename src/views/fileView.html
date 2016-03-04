@@ -1,26 +1,24 @@
-<div ng-show="image" ng-controller="galleryController">
-
-
+<div>
     <div class="galleryItem">
-        <h3> {{ thisFile.title }}</h3> by <a href="#" ng-click="onlyOwn(ownImagesId)">{{ thisUser.username }}</a> · {{ thisFile.uploadTime | javaDate }}
+        <h3> {{ thisFile.title }}</h3> by <a href="#/ownpage/{{thisUser.userId}}">{{ thisUser.username }}</a> · {{ thisFile.uploadTime | javaDate }}
 
         <div class="imageContainer" ng-swipe-left="nextImg()" ng-swipe-right="prevImg()">
-            <div ng-if="theFile.mimeType.substr(0,5) == 'image'">
-                <img ng-src="http://util.mw.metropolia.fi/uploads/{{ theFile.path }}">
+            <div ng-if="thisFile.mimeType.substr(0,5) == 'image'">
+                <img ng-src="http://util.mw.metropolia.fi/uploads/{{ thisFile.path }}">
             </div>
-            <div ng-if="theFile.mimeType.substr(0,5) == 'audio'">
+            <div ng-if="thisFile.mimeType.substr(0,5) == 'audio'">
                 <audio controls>
-                    <source ng-src="{{trustSrc(theFile.path)}}" type="audio/mp4">
+                    <source ng-src="{{trustSrc(thisFile.path)}}" type="audio/mp4">
                 </audio>
             </div>
-            <div ng-if="theFile.mimeType.substr(0,5) == 'video'">
+            <div ng-if="thisFile.mimeType.substr(0,5) == 'video'">
                 <video controls>
-                    <source ng-src="{{trustSrc(theFile.path)}}" type="video/mp4">
+                    <source ng-src="{{trustSrc(thisFile.path)}}" type="video/mp4">
                 </video>
             </div>
         </div>
         <div ng-repeat="comment in comments" class="comment">
-            <div class="comment1"><a href= "#" ng-click="onlyOwn(comment.userId)">{{comment.username}}</a> · {{ comment.time | javaDate }}</div>
+            <div class="comment1"><a href= "#/ownpage/{{comment.userId}}">{{comment.username}}</a> · {{ comment.time | javaDate }}</div>
             <div class="comment2">{{comment.comment}}</div>
 
         </div>

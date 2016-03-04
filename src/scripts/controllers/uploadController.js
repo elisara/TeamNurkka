@@ -18,7 +18,7 @@ angular.module('myApp')
             
             request.then(function (response) {
                 console.log(response.data);
-                //$window.location.reload();
+                $window.location.reload();
             }, function (error) {
                 console.log(error.data);
             });

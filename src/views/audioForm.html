@@ -1,7 +1,7 @@
 <div class="row">
-    <div class="col-xs-12" ng-show="audioFeed">
+    <div class="col-xs-12">
         <div class="thumbnail" ng-repeat="file in audioFiles">
-            <a href="#" ng-click="sendId(file, $index)">
+            <a href="#/image/{{file.fileId}}" ng-click="sendId(file, $index)">
                 <div ng-if="file.mimeType.substr(0,5) == 'audio'" id="audio">
                     <p ng-if="file.title.length <= 10">{{file.title}}</p>
                         <p ng-if="file.title.length >10">{{file.title.slice(0,12)}}</p>

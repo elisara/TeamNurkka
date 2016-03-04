@@ -1,28 +1,34 @@
 angular.module('myApp')
-    .controller('singleMediaController',[ '$scope', '$rootScope', 'ajaxFactory', 'MediaService',  function ($scope, $rootScope, ajaxFactory, MediaService) {
+    .controller('singleMediaController',[ '$scope', '$rootScope', 'ajaxFactory', 'MediaService', '$routeParams', '$sce', '$window',  function ($scope, $rootScope, ajaxFactory, MediaService, $routeParams, $sce, $window) {
 
         var file = MediaService.theFile;
-        $scope.timeNow = new Date();
+        $scope.ownId = localStorage.getItem('loginId');
+        var id = $routeParams.id;
+        
+        $scope.trustSrc = function (src) {
+            return $sce.trustAsResourceUrl(MediaService.mediaUrl + src);
+        };
+       
 
-        $scope.$on('mediaevent', function (evt) {
-            //console.log(MediaService.theFile.fileId);
-            ajaxFactory.loadOneMedia(MediaService.theFile.fileId).success(function (data) {
+
+            ajaxFactory.loadOneMedia(id).success(function (data) {
                 $scope.thisFile = data;
-                //console.log($scope.thisFile.userId);
+                console.log("IMAGE ID SINGLEMEDIACTRL: " + id);
+                console.log("PATH: " + $scope.thisFile.path);
+                
                 ajaxFactory.userById($scope.thisFile.userId).success(function (data) {
                     $scope.thisUser = data;
-                    console.log("USER ID: " +$scope.thisUser.userId);
+                    $scope.ownImagesId = $scope.thisUser.userId;
+                    console.log("USER ID: " + $scope.thisUser.userId);
                 });
-                ajaxFactory.commentsByFileId(MediaService.theFile.fileId).success(function (data) {
+                ajaxFactory.commentsByFileId(id).success(function (data) {
                     $scope.comments = data;
 
-                    //console.log($scope.thisUser);
+                    console.log($scope.thisUser);
                 });
 
             });
 
-
-        });
 
         $scope.comment = function () {
             var data = {
@@ -30,9 +36,11 @@ angular.module('myApp')
                 comment: $scope.comment1,
             };
 
-            var request = ajaxFactory.comment(data, MediaService.theFile.fileId);
+            var request = ajaxFactory.comment(data, id);
             request.then(function (response) {
                 console.log(response.data);
+                $window.location.reload();
+                
             }, function (error) {
                 console.log(error.data);
             });

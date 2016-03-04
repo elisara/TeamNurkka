@@ -11,39 +11,54 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>KuvaNurkka</title>
     <!-- Bootstrap -->
-    <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet"> />
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
 </head>
 
 <body id="wholeBody" ng-controller="galleryController">
 
     <!-- Top Nav -->
+    <div class="container" id="gallery">
     <header class="nav-down">
         <nav>
-            <ul class="list-unstyled main-menu" ng-controller="loginController">
+            <ul class="list-unstyled main-menu" >
 
                 <!--Include your navigation here-->
-                <li class="nav-close" style="text-align: right;"><a href="#">X</a></li>
-                <li ng-show="checkStorage()"><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-upload');">Upload </a></li>
-                <li ng-show="checkStorage()"><a href="#" class="nav-close" ng-click="onlyOwn(ownId)">Own files</a></li>
-                <li ng-hide="checkStorage()"><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-register');">Register </a></li>
-                <li ng-hide="checkStorage()"><a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-login');">Login </a></li>
-                <li ng-show="checkStorage()"><a href="#" class="nav-close" ng-click="logout()">Logout</a></li>
-                <li>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button class="button" type="submit" class="btn btn-default">Submit</button>
+                <li class="nav-close" style="text-align: right;">
+                    <a href="#">X</a>
                 </li>
-
-
+                <li ng-show="isLoggedIn()">
+                    <a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-upload');">Upload </a>
+                </li>
+                <li ng-show="isLoggedIn()">
+                    <a href="#/ownpage/{{ownId}}">Own Page</a>
+                </li>
+                <li ng-hide="isLoggedIn()">
+                    <a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-register');">Register </a>
+                </li>
+                <div ng-controller="loginController">
+                <li ng-hide="isLoggedIn()">
+                    <a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-login');">Login </a>
+                </li>
+                <li ng-show="isLoggedIn()">
+                    <a href="#" class="nav-close" ng-click="logout()">Logout</a>
+                </li>
+                </div>
+                <li>
+                   <form id="searchForm" enctype="application/x-www-form-urlencoded">
+                    <div class="form-group" ng-controller="searchController">
+                         <p>{{aTitle}}</p>
+                        <input type="text" name="search" class="form-control" placeholder="Search" ng-model='aTitle'>
+                       
+                    </div>
+                       <button class="button" ><a href="#/search">Submit</a></button>
+                    </form>
+                </li>
             </ul>
         </nav>
 
         <div class="navbar navbar-inverse navbar-fixed-top">
-
-
             <div ng-hide="image">
-                <a href="index.html" id="logo"><img src="images/kuvanurkka.png"></a>
+                <a href="#/" id="logo"><img src="images/kuvanurkka.png"></a>
             </div>
             <div ng-show="image">
                 <a href="" id="arrow"><img src="images/leftArrow.png" ng-click="backIt()"></a>
@@ -55,8 +70,6 @@
             </div>
         </div>
     </header>
-
-
 
 
     <!-- Popup views -->
@@ -100,53 +113,31 @@
     </div>
 
     <!— Content —>
-    <div class="container" id="gallery">
-        <div class="col-xs-12">
-            <file-view></file-view>
-        </div>
-        <div class="col-xs-12">
-            <br>
-            <div ng-controller="userFilesController">
-                <show-files></show-files>
-            </div>
-            <div ng-controller="ownFilesController">
-                <own-form></own-form>
-            </div>
-
-            <div ng-controller="fileTypeController">
-                <image-form></image-form>
-            </div>
-            <div ng-controller="fileTypeController">
-                <video-form></video-form>
-            </div>
-            <div ng-controller="fileTypeController">
-                <audio-form></audio-form>
-            </div>
-
-        </div>
-
+    
+        <div ng-view></div>
+        
 
         <!— Bottom Nav —>
         <div class="navbar navbar-fixed-bottom" id="alanavi">
             <div class="container" id="alanavicontainer">
                 <div class="row" id="alanavirow">
                     <ul id="naviul">
-                        <div class="col-xs-4" id="navidivi" ng-controller="fileTypeController">
+                        <div class="col-xs-4" id="navidivi" >
                             <li>
-                                <a href="#" ng-click="onlyAudio()"><img src="images/cd.png"></a>
+                                <a href="#/audio"><img src="images/cd.png"></a>
                             </li>
                         </div>
                         <div class="col-xs-4" id="navidivi">
                             <li>
-                                <a href="#" ng-click="onlyImages()"><img src="images/images.png"></a>
+                                <a href="#/images"><img src="images/images.png"></a>
                             </li>
                         </div>
                         <div class="col-xs-4" id="navidivi">
                             <li>
-                                <a href="#" ng-click="onlyVideos()"><img src="images/oranssivideo.png"></a>
+                                <a href="#/videos" ><img src="images/oranssivideo.png"></a>
                             </li>
                         </div>
-                       
+
                     </ul>
                 </div>
             </div>
@@ -164,14 +155,15 @@
     <script src="../bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
     <script src="../bower_components/ng-dialog/js/ngDialog.js"></script>
     <script src="../bower_components/ng-dialog/css/ngDialog.css" </script>
-        < script src = "../bower_components/ng-dialog/css/ngDialog-theme-default.css" >
+    <script src = "../bower_components/ng-dialog/css/ngDialog-theme-default.css" >
     </script>
     <script src="../bower_components/moment/moment.js"></script>
-
-    <!-- My App's JS file(s)-->
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+        <!-- My App's JS file(s)-->
     <script src="app.js"></script>
     <script src="scripts/scrollNav.js"></script>
     <script src="scripts/dateFilter.js"></script>
+
 
     <!-- Directives -->
     <script src="scripts/directives/registerForm.js"></script>
@@ -185,6 +177,7 @@
     <script src="scripts/directives/audioForm.js"></script>
     <script src="scripts/directives/videoForm.js"></script>
     <script src="scripts/directives/ownForm.js"></script>
+    <script src="scripts/directives/searchForm.js"></script>
 
 
     <!-- Controllers -->
@@ -196,6 +189,8 @@
     <script src="scripts/controllers/fileTypeController.js"></script>
     <script src="scripts/controllers/singleMediaController.js"></script>
     <script src="scripts/controllers/ownFilesController.js"></script>
+    <script src="scripts/controllers/searchController.js"></script>
+    
 
 
     <!-- Servises -->

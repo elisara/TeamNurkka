@@ -12,7 +12,6 @@ angular.module('myApp')
             request.then(function (response) {
 
                 if (response.data.status == "login ok") {
-                    //MediaService.setVariable('userData', response.data);
                     var finalId = angular.fromJson(response.data.userId);
                     console.log("userId: " + finalId);
                     localStorage.setItem("loginId", finalId);

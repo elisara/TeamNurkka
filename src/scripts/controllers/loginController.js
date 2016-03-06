@@ -29,7 +29,7 @@ angular.module('myApp')
             }, function (error) {
                 console.log(error.data);
             });
-            $window.location.reload();
+            //$window.location.reload();
         };
 
         $scope.logout = function () {

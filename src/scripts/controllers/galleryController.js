@@ -13,12 +13,11 @@ angular.module('myApp')
             return localStorage.getItem('loginId') !== null;
         };
 
-
-        
         ajaxFactory.getAllFiles().success(function (data) {
             $scope.files = data;
         });
 
+        /**
         $scope.sendId = function (file, index) {
             $scope.numero = index;
             $scope.changefile = $scope.files[index];
@@ -34,9 +33,10 @@ angular.module('myApp')
             return file;
 
         };
+        */
 
        
-
+        /**
         $scope.nextImg = function () {
             $scope.numero++;
             console.log("Next: " + $scope.numero);
@@ -56,6 +56,7 @@ angular.module('myApp')
             $scope.theFile = $scope.changefile;
             console.log($scope.theFile);
         };
+        */
 
         ajaxFactory.getAllFiles().success(function (data) {
             $scope.files = data;
@@ -83,7 +84,6 @@ angular.module('myApp')
         
          $scope.isLoggedIn = function () {
             return localStorage.getItem('loginId') !== null;
-
 
         };
 

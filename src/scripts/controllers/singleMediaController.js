@@ -4,7 +4,8 @@ angular.module('myApp')
         var file = MediaService.theFile;
         $scope.ownId = localStorage.getItem('loginId');
         var id = $routeParams.id;
-        console.log(id);
+        $scope.liked = false;
+        var likedPicCount = 0;
 
         $scope.trustSrc = function (src) {
             return $sce.trustAsResourceUrl(MediaService.mediaUrl + src);
@@ -14,13 +15,21 @@ angular.module('myApp')
 
         ajaxFactory.loadOneMedia(id).success(function (data) {
             $scope.thisFile = data;
-            console.log("IMAGE ID SINGLEMEDIACTRL: " + id);
-            console.log("PATH: " + $scope.thisFile.path);
 
+            ajaxFactory.likedByUser($scope.ownId).success(function (data) {
+                var filesLikedByUser = data;
+
+                do {
+                    if (filesLikedByUser[likedPicCount]['fileId'] == id) {
+                        $scope.liked = true;
+                    }
+                    likedPicCount++;
+                } while (likedPicCount < filesLikedByUser.length);
+            });
             ajaxFactory.userById($scope.thisFile.userId).success(function (data) {
                 $scope.thisUser = data;
                 $scope.ownImagesId = $scope.thisUser.userId;
-                console.log("USER ID: " + $scope.thisUser.userId);
+                console.log("Uploader ID: " + $scope.thisUser.userId);
             });
             ajaxFactory.commentsByFileId(id).success(function (data) {
                 $scope.comments = data;
@@ -29,6 +38,20 @@ angular.module('myApp')
             });
 
         });
+        
+        $scope.isLiked = function () {
+                return $scope.liked === true;
+            };
+        
+        $scope.likeThis = function(){
+            ajaxFactory.like(id, $scope.ownId);
+            //$window.location.reload();
+        };
+        
+        $scope.unlikeThis = function(){
+            ajaxFactory.unlike(id, $scope.ownId);
+            //$window.location.reload();
+        };
 
 
         $scope.comment = function () {
@@ -54,6 +77,7 @@ angular.module('myApp')
 
         $scope.nextImg = function () {
             id = parseInt(id) + 1;
+            $scope.liked = false;
             ajaxFactory.loadOneMedia(id).success(function (data) {
                 $scope.thisFile = data;
                 console.log("IMAGE ID SINGLEMEDIACTRL: " + id);
@@ -73,9 +97,11 @@ angular.module('myApp')
             });
 
             console.log(id);
+           
         };
         $scope.prevImg = function () {
             id = parseInt(id) - 1;
+            $scope.liked = false;
             ajaxFactory.loadOneMedia(id).success(function (data) {
                 $scope.thisFile = data;
                 console.log("IMAGE ID SINGLEMEDIACTRL: " + id);

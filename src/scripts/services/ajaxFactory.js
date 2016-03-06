@@ -1,5 +1,5 @@
 angular.module('myApp')
-    .factory('ajaxFactory', [ '$http', '$httpParamSerializer', function ($http, $httpParamSerializer) {
+    .factory('ajaxFactory', ['$http', '$httpParamSerializer', function ($http, $httpParamSerializer) {
         var urlBase = 'http://util.mw.metropolia.fi/ImageRekt/api/v2/';
 
         var ajaxFunctions = {};
@@ -54,6 +54,8 @@ angular.module('myApp')
                 return data;
             });
         };
+        
+        
         ajaxFunctions.userById = function (id) {
             return $http.get(urlBase + 'user/' + id).success(function (data) {
                 return data;
@@ -104,8 +106,21 @@ angular.module('myApp')
             });
         };
 
-
-
+        ajaxFunctions.like = function (fileId, userId) {
+            return $http.get(urlBase + 'like/' + fileId + "/" + userId).success(function (data) {
+                return data;
+            });
+        };
+        ajaxFunctions.unlike = function (fileId, userId) {
+            return $http.get(urlBase + 'unlike/' + fileId + "/" + userId).success(function (data) {
+                return data;
+            });
+        };
+        ajaxFunctions.likedByUser = function (userId) {
+            return $http.get(urlBase + 'likes/user/' + userId).success(function (data) {
+                return data;
+            });
+        };
 
         return ajaxFunctions;
     }]);

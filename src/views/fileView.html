@@ -17,6 +17,8 @@
                 </video>
             </div>
         </div>
+        <div ng-show="isLiked()" ng-click="unlikeThis()"><img src="images/like.png"></div>
+        <div ng-hide="isLiked()" ng-click="likeThis()"><img src="images/unlike.png"></div>
         <div ng-repeat="comment in comments" class="comment">
             <div class="comment1"><a href= "#/ownpage/{{comment.userId}}">{{comment.username}}</a> · {{ comment.time | javaDate }}</div>
             <div class="comment2">{{comment.comment}}</div>

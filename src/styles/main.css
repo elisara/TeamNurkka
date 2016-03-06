@@ -57,6 +57,7 @@
     
     .like {
         margin: 10px;
+        display: inline-block;
     }
     
     .like img {
@@ -78,6 +79,7 @@
         margin-left: 5px;
         font-size: 15px;
         padding-bottom: 3px;
+        color: #C0C0C0;
     }
     
     .nextPrev {

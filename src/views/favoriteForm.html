@@ -1,0 +1,35 @@
+<div class="row">
+    <div class="col-xs-12" >
+        <div class="thumbnail" ng-repeat="file in favFiles">
+
+            <a href="#/image/{{file.fileId}}" ng-click="sendId(file, $index)">
+
+                <div ng-if="file.mimeType.substr(0,5) == 'image'">
+                    <div class="img" style="background-image:url({{trustSrc(file.thumbNails.medium)}});">
+                    </div>
+                </div>
+                <div ng-if="file.mimeType.substr(0,5) == 'audio'" id="audio">
+                    <div class="img" id="overlayVideo">
+                        <p ng-if="file.title.length <= 10">{{file.title}}</p>
+                        <p ng-if="file.title.length >10">{{file.title.slice(0,12)}}</p>
+                        <img src="images/harmaacd.png">
+                    </div>
+                </div>
+                <div ng-if="file.mimeType.substr(0,5) == 'video'">
+                    <div class="img" style="background-image:url({{trustSrc(file.thumbNails.medium)}});" id="overlayVideo">
+                        <img src="images/harmaaplay.png">
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-xs-12" id="loadmore">
+            <button class="button" href="#" ng-class="nextPageDisabledClass()" ng-click="loadMore()">Load More</button>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        &nbsp;
+    </div>
+</div>

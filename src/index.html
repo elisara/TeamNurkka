@@ -32,6 +32,9 @@
                     <li ng-show="isLoggedIn()">
                         <a href="#/ownpage/{{ownId}}">Own Page</a>
                     </li>
+                    <li ng-show="isLoggedIn()">
+                        <a href="#/ownpage/{{ownId}}">Favorites</a>
+                    </li>
                     <li ng-hide="isLoggedIn()">
                         <a href="javascript:void(0)" class="nav-close" onclick="toggle_visibility('popup-register');">Register </a>
                     </li>

@@ -29,13 +29,14 @@ angular.module('myApp')
             }, function (error) {
                 console.log(error.data);
             });
+            $window.location.href = '#/';
            
         };
 
         $scope.logout = function () {
             localStorage.clear();
             console.log("loggaa ulos");
-            $window.location.reload();
+            $window.location.href = '#/';
         };
         $scope.checkStorage = function () {
             return localStorage.getItem('loginId') !== null;

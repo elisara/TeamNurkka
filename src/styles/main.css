@@ -55,6 +55,14 @@
         color: rgb(221, 221, 209);
     }
     
+    .like {
+        margin: 10px;
+    }
+    
+    .like img {
+        width: 30px;
+    }
+    
     .comment {
         border-radius: 4px;
         background-color: black !important;

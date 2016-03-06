@@ -8,8 +8,7 @@ angular.module('myApp')
             var data = {
                 title: $scope.aTitle
             };
-        
-             
+              
             console.log(data);
             var request = ajaxFactory.searchTitle(data);
 

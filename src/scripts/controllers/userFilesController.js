@@ -1,10 +1,7 @@
 angular.module('myApp')
     .controller('userFilesController',[ '$scope', '$sce', 'ajaxFactory', 'MediaService', function ($scope, $sce, ajaxFactory, MediaService) {
 
-
-
         $scope.path = ajaxFactory.urlBaseImage;
-
 
         $scope.trustSrc = function (src) {
             return $sce.trustAsResourceUrl(MediaService.mediaUrl + src);

@@ -3,7 +3,6 @@ angular.module('myApp')
 
         $scope.viewNro = 1;
         $scope.ownId = localStorage.getItem('loginId');
-        console.log($scope.ownId);
         var id = $routeParams.id;
         var file = MediaService.theFile;
         $scope.timeNow = new Date();
@@ -13,13 +12,7 @@ angular.module('myApp')
             return localStorage.getItem('loginId') !== null;
         };
 
-        /**
-        ajaxFactory.getAllFiles().success(function (data) {
-            $scope.files = data;
-        });
-
-*/
-
+    
         ajaxFactory.getAllFiles().success(function (data) {
             $scope.files = data;
             $scope.itemsPerPage = 30;

@@ -44,7 +44,7 @@ angular.module('myApp')
             return $http.get(urlBase + 'files/user/' + args);
         };
 
-        //elisa 10.2
+
         ajaxFunctions.fileByType = function (args) {
             return $http.get(urlBase + 'files/type/' + args);
         };
@@ -54,8 +54,8 @@ angular.module('myApp')
                 return data;
             });
         };
-        
-        
+
+
         ajaxFunctions.userById = function (id) {
             return $http.get(urlBase + 'user/' + id).success(function (data) {
                 return data;

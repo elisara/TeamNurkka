@@ -7,7 +7,6 @@ angular.module('myApp')
         $scope.ownId = localStorage.getItem('loginId');
         var id = $routeParams.id;
         $scope.liked = false;
-        $scope.prevId = id;
 
 
         $scope.trustSrc = function (src) {
@@ -22,7 +21,6 @@ angular.module('myApp')
         var request = ajaxFactory.loadOneMedia(id).success(function (data) {
             request.then(function (response) {
                 $scope.thisFile = response.data;
-                console.log("data: " + $scope.thisFile);
 
                 ajaxFactory.likedByUser($scope.ownId).success(function (data) {
                     var filesLikedByUser = data;
@@ -38,12 +36,9 @@ angular.module('myApp')
                 ajaxFactory.userById($scope.thisFile.userId).success(function (data) {
                     $scope.thisUser = data;
                     $scope.ownImagesId = $scope.thisUser.userId;
-                    console.log("Uploader ID: " + $scope.thisUser.userId);
                 });
                 ajaxFactory.commentsByFileId(id).success(function (data) {
                     $scope.comments = data;
-
-                    console.log($scope.thisUser);
                 });
             }, function (error) {
                 console.log(error.data);
@@ -58,8 +53,6 @@ angular.module('myApp')
         $scope.likeThis = function () {
             var request = ajaxFactory.like(id, $scope.ownId);
             request.then(function (response) {
-                console.log(response.data);
-
 
             }, function (error) {
                 console.log(error.data);
@@ -70,14 +63,12 @@ angular.module('myApp')
         $scope.unlikeThis = function () {
             var request = ajaxFactory.unlike(id, $scope.ownId);
             request.then(function (response) {
-                console.log(response.data);
 
             }, function (error) {
                 console.log(error.data);
 
             });
             $window.location.reload();
-
         };
 
 
@@ -89,13 +80,11 @@ angular.module('myApp')
 
             var request = ajaxFactory.comment(data, id);
             request.then(function (response) {
-                console.log(response.data);
                 $window.location.reload();
 
             }, function (error) {
                 console.log(error.data);
             });
-
         };
 
         $scope.isLogin = function () {

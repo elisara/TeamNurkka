@@ -18,7 +18,7 @@
             <div ng-if="thisFile.mimeType.substr(0,5) == 'image'">
                 <img ng-src="http://util.mw.metropolia.fi/uploads/{{ thisFile.path }}">
             </div>
-            <div ng-if="thisFile.mimeType.substr(0,5) == 'audio'">
+            <div id="audiodivi" ng-if="thisFile.mimeType.substr(0,5) == 'audio'">
                 <audio controls>
                     <source ng-src="{{trustSrc(thisFile.path)}}" type="audio/mp4">
                 </audio>

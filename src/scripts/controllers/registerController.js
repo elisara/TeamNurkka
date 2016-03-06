@@ -12,7 +12,6 @@ angular.module('myApp')
             var request = ajaxFactory.register(data);
 
             request.then(function (response) {
-                console.log(response.data);
                 MediaService.setVariable('userData', response.data);
                 $scope.logged = true;
 
@@ -20,7 +19,6 @@ angular.module('myApp')
                     template: '<p>Register completed!</p>',
                     plain: true
                 });
-                //$window.location.reload();
             }, function (error) {
                 console.log(error.data);
             });

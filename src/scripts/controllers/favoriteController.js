@@ -4,8 +4,7 @@ angular.module('myApp')
 
         $scope.path = ajaxFactory.urlBaseImage;
         var user = $routeParams.user;
-        console.log("USER ALUSSA:" + user);
-
+      
         $scope.trustSrc = function (src) {
             return $sce.trustAsResourceUrl(MediaService.mediaUrl + src);
         };
@@ -13,7 +12,6 @@ angular.module('myApp')
 
         ajaxFactory.likedByUser(user).success(function (data) {
             $scope.favFiles = data;
-            console.log("DATA :" + data);
             $scope.itemsPerPage = 30;
             $scope.currentPage = 0;
             $scope.total = $scope.favFiles.length;
@@ -36,12 +34,9 @@ angular.module('myApp')
             };
         });
 
-
-        console.log("FAVS!");
         $scope.viewNro = 5;
 
         var request = ajaxFactory.likedByUser(user);
-        console.log("FAV, USER ID: " + user);
         request.then(function (response) {
             $scope.files = response.data;
         }, function (error) {

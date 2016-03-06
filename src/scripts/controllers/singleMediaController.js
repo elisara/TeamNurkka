@@ -1,10 +1,13 @@
 angular.module('myApp')
     .controller('singleMediaController', ['$scope', '$rootScope', 'ajaxFactory', 'MediaService', '$routeParams', '$sce', '$window', function ($scope, $rootScope, ajaxFactory, MediaService, $routeParams, $sce, $window) {
 
+
+
         var file = MediaService.theFile;
         $scope.ownId = localStorage.getItem('loginId');
         var id = $routeParams.id;
         $scope.liked = false;
+        $scope.idFile = parseInt(id);
         var likedPicCount = 0;
 
         $scope.trustSrc = function (src) {
@@ -12,43 +15,47 @@ angular.module('myApp')
         };
 
 
+        var request = ajaxFactory.loadOneMedia(id).success(function (data) {
+            request.then(function (response) {
+                $scope.thisFile = response.data;
+                console.log("data: " + $scope.thisFile);
 
-        ajaxFactory.loadOneMedia(id).success(function (data) {
-            $scope.thisFile = data;
+                ajaxFactory.likedByUser($scope.ownId).success(function (data) {
+                    var filesLikedByUser = data;
 
-            ajaxFactory.likedByUser($scope.ownId).success(function (data) {
-                var filesLikedByUser = data;
+                    do {
+                        if (filesLikedByUser[likedPicCount]['fileId'] == id) {
+                            $scope.liked = true;
+                        }
+                        likedPicCount++;
+                    } while (likedPicCount < filesLikedByUser.length);
+                });
+                ajaxFactory.userById($scope.thisFile.userId).success(function (data) {
+                    $scope.thisUser = data;
+                    $scope.ownImagesId = $scope.thisUser.userId;
+                    console.log("Uploader ID: " + $scope.thisUser.userId);
+                });
+                ajaxFactory.commentsByFileId(id).success(function (data) {
+                    $scope.comments = data;
 
-                do {
-                    if (filesLikedByUser[likedPicCount]['fileId'] == id) {
-                        $scope.liked = true;
-                    }
-                    likedPicCount++;
-                } while (likedPicCount < filesLikedByUser.length);
-            });
-            ajaxFactory.userById($scope.thisFile.userId).success(function (data) {
-                $scope.thisUser = data;
-                $scope.ownImagesId = $scope.thisUser.userId;
-                console.log("Uploader ID: " + $scope.thisUser.userId);
-            });
-            ajaxFactory.commentsByFileId(id).success(function (data) {
-                $scope.comments = data;
-
-                console.log($scope.thisUser);
+                    console.log($scope.thisUser);
+                });
+            }, function (error) {
+                console.log(error.data);
             });
 
         });
-        
+
         $scope.isLiked = function () {
-                return $scope.liked === true;
-            };
-        
-        $scope.likeThis = function(){
+            return $scope.liked === true;
+        };
+
+        $scope.likeThis = function () {
             ajaxFactory.like(id, $scope.ownId);
             //$window.location.reload();
         };
-        
-        $scope.unlikeThis = function(){
+
+        $scope.unlikeThis = function () {
             ajaxFactory.unlike(id, $scope.ownId);
             //$window.location.reload();
         };
@@ -75,53 +82,68 @@ angular.module('myApp')
             return localStorage.getItem('loginId') !== null;
         };
 
+
         $scope.nextImg = function () {
-            id = parseInt(id) + 1;
-            $scope.liked = false;
-            ajaxFactory.loadOneMedia(id).success(function (data) {
-                $scope.thisFile = data;
-                console.log("IMAGE ID SINGLEMEDIACTRL: " + id);
-                console.log("PATH: " + $scope.thisFile.path);
-
-                ajaxFactory.userById($scope.thisFile.userId).success(function (data) {
-                    $scope.thisUser = data;
-                    $scope.ownImagesId = $scope.thisUser.userId;
-                    console.log("USER ID: " + $scope.thisUser.userId);
-                });
-                ajaxFactory.commentsByFileId(id).success(function (data) {
-                    $scope.comments = data;
-
-                    console.log($scope.thisUser);
-                });
-
-            });
-
-            console.log(id);
-           
-        };
-        $scope.prevImg = function () {
             id = parseInt(id) - 1;
+            console.log("ID NEXT: " + id);
             $scope.liked = false;
-            ajaxFactory.loadOneMedia(id).success(function (data) {
-                $scope.thisFile = data;
-                console.log("IMAGE ID SINGLEMEDIACTRL: " + id);
-                console.log("PATH: " + $scope.thisFile.path);
+            var request = ajaxFactory.loadOneMedia(id).success(function (data) {
+                request.then(function (response) {
+                    $scope.thisFile = response.data;
+                    console.log("FileID: " + $scope.thisFile.userId);
+                    console.log("IMAGE ID SINGLEMEDIACTRL: " + id);
 
-                ajaxFactory.userById($scope.thisFile.userId).success(function (data) {
-                    $scope.thisUser = data;
-                    $scope.ownImagesId = $scope.thisUser.userId;
-                    console.log("USER ID: " + $scope.thisUser.userId);
-                });
-                ajaxFactory.commentsByFileId(id).success(function (data) {
-                    $scope.comments = data;
 
-                    console.log($scope.thisUser);
+                    ajaxFactory.userById($scope.thisFile.userId).success(function (data) {
+                        $scope.thisUser = data;
+                        $scope.ownImagesId = $scope.thisUser.userId;
+                        console.log("USER ID: " + $scope.thisUser.userId);
+                    });
+                    ajaxFactory.commentsByFileId(id).success(function (data) {
+                        $scope.comments = data;
+
+                        console.log($scope.thisUser);
+                    });
+                }, function (error) {
+                    id = parseInt(id) + 1;
                 });
 
             });
 
-            console.log(id);
+            //console.log(id);
+
         };
+
+        $scope.prevImg = function () {
+            id = parseInt(id) + 1;
+            console.log("ID prev: " + id);
+            $scope.liked = false;
+            var request = ajaxFactory.loadOneMedia(id).success(function (data) {
+                request.then(function (response) {
+                    $scope.thisFile = response.data;
+                    console.log("IMAGE ID SINGLEMEDIACTRL: " + id);
+                    //console.log("PATH: " + $scope.thisFile.path);
+
+                    ajaxFactory.userById($scope.thisFile.userId).success(function (data) {
+                        $scope.thisUser = data;
+                        $scope.ownImagesId = $scope.thisUser.userId;
+                        console.log("USER ID: " + $scope.thisUser.userId);
+                    });
+                    ajaxFactory.commentsByFileId(id).success(function (data) {
+                        $scope.comments = data;
+
+                        console.log($scope.thisUser);
+                    });
+                }, function (error) {
+                    id = parseInt(id) - 1;
+                });
+
+            });
+
+            //console.log(id);
+
+        };
+
 
         function saveImageToPhone(img, success, error) {
             var canvas, context, imageDataUrl, imageData;
@@ -152,8 +174,8 @@ angular.module('myApp')
             console.error(err);
         };
 
-        $scope.saveImage = function (img) {
-            saveImageToPhone(img, success, error);
+        $scope.saveImage = function (url) {
+            cordova.exec(null, null, "InAppBrowser", "open", [url, "_system"]);
         };
 
     }]);

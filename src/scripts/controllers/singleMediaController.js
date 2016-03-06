@@ -7,12 +7,16 @@ angular.module('myApp')
         $scope.ownId = localStorage.getItem('loginId');
         var id = $routeParams.id;
         $scope.liked = false;
-        $scope.idFile = parseInt(id);
-        var likedPicCount = 0;
+        $scope.prevId = id;
+
 
         $scope.trustSrc = function (src) {
             return $sce.trustAsResourceUrl(MediaService.mediaUrl + src);
         };
+
+        ajaxFactory.getAllFiles().success(function (data) {
+            $scope.allFiles = data;
+        });
 
 
         var request = ajaxFactory.loadOneMedia(id).success(function (data) {
@@ -22,6 +26,7 @@ angular.module('myApp')
 
                 ajaxFactory.likedByUser($scope.ownId).success(function (data) {
                     var filesLikedByUser = data;
+                    var likedPicCount = 0;
 
                     do {
                         if (filesLikedByUser[likedPicCount]['fileId'] == id) {
@@ -51,13 +56,28 @@ angular.module('myApp')
         };
 
         $scope.likeThis = function () {
-            ajaxFactory.like(id, $scope.ownId);
-            //$window.location.reload();
+            var request = ajaxFactory.like(id, $scope.ownId);
+            request.then(function (response) {
+                console.log(response.data);
+
+
+            }, function (error) {
+                console.log(error.data);
+            });
+            $window.location.reload();
         };
 
         $scope.unlikeThis = function () {
-            ajaxFactory.unlike(id, $scope.ownId);
-            //$window.location.reload();
+            var request = ajaxFactory.unlike(id, $scope.ownId);
+            request.then(function (response) {
+                console.log(response.data);
+
+            }, function (error) {
+                console.log(error.data);
+
+            });
+            $window.location.reload();
+
         };
 
 
@@ -84,64 +104,17 @@ angular.module('myApp')
 
 
         $scope.nextImg = function () {
-            id = parseInt(id) - 1;
-            console.log("ID NEXT: " + id);
-            $scope.liked = false;
-            var request = ajaxFactory.loadOneMedia(id).success(function (data) {
-                request.then(function (response) {
-                    $scope.thisFile = response.data;
-                    console.log("FileID: " + $scope.thisFile.userId);
-                    console.log("IMAGE ID SINGLEMEDIACTRL: " + id);
-
-
-                    ajaxFactory.userById($scope.thisFile.userId).success(function (data) {
-                        $scope.thisUser = data;
-                        $scope.ownImagesId = $scope.thisUser.userId;
-                        console.log("USER ID: " + $scope.thisUser.userId);
-                    });
-                    ajaxFactory.commentsByFileId(id).success(function (data) {
-                        $scope.comments = data;
-
-                        console.log($scope.thisUser);
-                    });
-                }, function (error) {
-                    id = parseInt(id) + 1;
-                });
-
-            });
-
-            //console.log(id);
-
+            if (parseInt(id) >= $scope.allFiles[$scope.allFiles.length - 1].fileId) {
+                id = parseInt(id) - 1;
+            }
+            $window.location.href = '#/image/' + id;
         };
 
         $scope.prevImg = function () {
-            id = parseInt(id) + 1;
-            console.log("ID prev: " + id);
-            $scope.liked = false;
-            var request = ajaxFactory.loadOneMedia(id).success(function (data) {
-                request.then(function (response) {
-                    $scope.thisFile = response.data;
-                    console.log("IMAGE ID SINGLEMEDIACTRL: " + id);
-                    //console.log("PATH: " + $scope.thisFile.path);
-
-                    ajaxFactory.userById($scope.thisFile.userId).success(function (data) {
-                        $scope.thisUser = data;
-                        $scope.ownImagesId = $scope.thisUser.userId;
-                        console.log("USER ID: " + $scope.thisUser.userId);
-                    });
-                    ajaxFactory.commentsByFileId(id).success(function (data) {
-                        $scope.comments = data;
-
-                        console.log($scope.thisUser);
-                    });
-                }, function (error) {
-                    id = parseInt(id) - 1;
-                });
-
-            });
-
-            //console.log(id);
-
+            if (parseInt(id) < $scope.allFiles[0].fileId) {
+                id = parseInt(id) + 1;
+            }
+            $window.location.href = '#/image/' + id;
         };
 
 
